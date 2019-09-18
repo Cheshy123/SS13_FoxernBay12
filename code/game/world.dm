@@ -644,6 +644,18 @@ var/world_topic_spam_protect_time = world.timeofday
 	if (src.status != s)
 		src.status = s
 
+/world/proc/change_fps(new_value = 20)
+	if(new_value <= 0)
+		CRASH("change_fps() called with [new_value] new_value.")
+	if(fps == new_value)
+		return //No change required.
+
+	fps = new_value
+	on_tickrate_change()
+
+/world/proc/on_tickrate_change()
+	return
+
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0

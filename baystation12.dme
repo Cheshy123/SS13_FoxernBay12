@@ -46,6 +46,7 @@
 #include "code\__defines\research.dm"
 #include "code\__defines\shields.dm"
 #include "code\__defines\species_languages.dm"
+#include "code\__defines\subsystems.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\tgs.config.dm"
 #include "code\__defines\tgs.dm"
