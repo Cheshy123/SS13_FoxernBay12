@@ -63,7 +63,23 @@
 #define SS_SLEEPING 4	/// fire() slept.
 #define SS_PAUSING 5 	/// in the middle of pausing
 
-/* Unsupported
+//It's timed solution
+#define SUBSYSTEM_DEF(X) var/datum/controller/subsystem/##X/SS##X;\
+/datum/controller/subsystem/##X/New(){\
+    NEW_SS_GLOBAL(SS##X);\
+    PreInit();\
+}\
+/datum/controller/subsystem/##X
+
+#define PROCESSING_SUBSYSTEM_DEF(X) var/datum/controller/subsystem/processing/##X/SS##X;\
+/datum/controller/subsystem/processing/##X/New(){\
+    NEW_SS_GLOBAL(SS##X);\
+    PreInit();\
+}\
+/datum/controller/subsystem/processing/##X
+
+
+/* After globals we should use this
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
     NEW_SS_GLOBAL(SS##X);\
@@ -78,3 +94,5 @@
 }\
 /datum/controller/subsystem/processing/##X
 */
+
+
