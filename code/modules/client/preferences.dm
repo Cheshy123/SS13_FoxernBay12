@@ -51,6 +51,8 @@
 	var/list/gear						//Left in for Legacy reasons, will no longer save.
 	var/list/gear_list = list()			//Custom/fluff item loadouts.
 	var/gear_slot = 1					//The current gear save slot
+	var/list/m_styles = DEFAULT_MARKING_STYLES			//Marking styles.
+	var/list/m_colours = DEFAULT_MARKING_COLOURS		//Marking colours.
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
