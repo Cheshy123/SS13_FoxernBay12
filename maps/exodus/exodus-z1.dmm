@@ -7492,7 +7492,7 @@
 	},
 /area/centcom/control)
 "wu" = (
-/obj/machinery/computer/supply,
+/obj/item/modular_computer/console/preset/supply,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
