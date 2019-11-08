@@ -198,7 +198,7 @@
 
 	if (href_list["adjust"])
 		timetoset += text2num(href_list["adjust"])
-		timetoset = Clamp(timetoset, 0, 36000)
+		timetoset = clamp(timetoset, 0, 36000)
 		. = 1
 
 	update_icon()

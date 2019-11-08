@@ -190,7 +190,7 @@
 		if(gene.is_active(src))
 			gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,500)
+	radiation = clamp(radiation,0,500)
 
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
@@ -210,7 +210,7 @@
 			if (radiation < 2)
 				radiation = 0
 
-			nutrition = Clamp(nutrition, 0, 550)
+			nutrition = clamp(nutrition, 0, 550)
 
 			return
 
@@ -548,7 +548,7 @@
 				light_amount = T.get_lumcount() * 10
 			nutrition += light_amount
 			shock_stage -= light_amount
-			nutrition = Clamp(nutrition, 0, 550)
+			nutrition = clamp(nutrition, 0, 550)
 
 	if(species.light_dam)
 		var/light_amount = 0
@@ -844,7 +844,7 @@
 		if(isSynthetic())
 			var/obj/item/organ/internal/cell/C = internal_organs_by_name[BP_CELL]
 			if (istype(C))
-				var/chargeNum = Clamp(ceil(C.percent()/25), 0, 4)	//0-100 maps to 0-4, but give it a paranoid clamp just in case.
+				var/chargeNum = clamp(ceil(C.percent()/25), 0, 4)	//0-100 maps to 0-4, but give it a paranoid clamp just in case.
 				cells.icon_state = "charge[chargeNum]"
 			else
 				cells.icon_state = "charge-empty"
@@ -923,7 +923,7 @@
 		var/turf/T = loc
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-	
+
 	var/area/A = get_area(src)
 	if(client && world.time >= client.played + 600)
 		A.play_ambience(src)

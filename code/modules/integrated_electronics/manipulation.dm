@@ -44,7 +44,7 @@
 /obj/item/integrated_circuit/manipulation/injector/proc/inject_amount()
 	var/amount = get_pin_data(IC_INPUT, 2)
 	if(isnum(amount))
-		return Clamp(amount, 0, 30)
+		return clamp(amount, 0, 30)
 
 /obj/item/integrated_circuit/manipulation/injector/do_work()
 	set waitfor = 0 // Don't sleep in a proc that is called by a processor without this set, otherwise it'll delay the entire thing
@@ -90,7 +90,7 @@
 /obj/item/integrated_circuit/manipulation/reagent_pump/on_data_written()
 	var/amount = get_pin_data(IC_INPUT, 3)
 	if(isnum(amount))
-		transfer_amount = Clamp(amount, 0, 50)
+		transfer_amount = clamp(amount, 0, 50)
 
 /obj/item/integrated_circuit/manipulation/reagent_pump/do_work()
 	var/atom/movable/source = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
