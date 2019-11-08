@@ -42,3 +42,25 @@
 
 // Used by the Nano UI Manager (/datum/nanomanager) to track UIs opened by this mob
 /mob/var/list/open_uis = list()
+
+/mob/proc/shared_ui_interaction(src_object)
+	if(!client) // Close UIs if mindless.
+		return STATUS_CLOSE
+	else if(stat) // Disable UIs if unconcious.
+		return STATUS_DISABLED
+	else if(incapacitated() || lying) // Update UIs if incapicitated but concious.
+		return STATUS_UPDATE
+	return STATUS_INTERACTIVE
+
+/mob/living/silicon/ai/shared_ui_interaction(src_object)
+	if(!has_power()) // Disable UIs if the AI is unpowered.
+		return STATUS_DISABLED
+	return ..()
+
+/mob/living/silicon/robot/shared_ui_interaction(src_object)
+	if(cell.charge <= 0 || lockcharge) // Disable UIs if the Borg is unpowered or locked.
+		return STATUS_DISABLED
+	return ..()
+
+/datum/proc/ui_data(mob/user, ui_key = "main")
+	return list() // Not implemented.

@@ -84,11 +84,6 @@ obj/machinery/resleever/process()
 
 	ui_interact(user)
 
-/obj/machinery/resleever/ui_status(mob/user, datum/ui_state/state)
-	if(!anchored || inoperable())
-		return UI_CLOSE
-	return ..()
-
 /obj/machinery/resleever/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/data = list(
 		"name" = occupant_name,
