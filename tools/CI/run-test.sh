@@ -187,8 +187,8 @@ function find_code {
 function run_code_tests {
     msg "*** running code tests ***"
     find_code_deps
-    pip install --user PyYaml -q
-    pip install --user beautifulsoup4 -q
+    pip3 install --user PyYaml -q
+    pip3 install --user beautifulsoup4 -q
     shopt -s globstar
     run_test_fail "maps contain no step_[xy]" "grep 'step_[xy]' maps/**/*.dmm"
     run_test_fail "ensure nanoui templates unique" "find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano"

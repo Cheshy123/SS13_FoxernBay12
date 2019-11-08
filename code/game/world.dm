@@ -95,6 +95,8 @@
 	load_mods()
 	//end-emergency fix
 
+	TgsNew(minimum_required_security_level = TGS_SECURITY_TRUSTED)
+
 	src.update_status()
 
 	. = ..()
@@ -139,6 +141,8 @@
 		if(config.ToRban)
 			ToRban_autoupdate()
 
+	TgsInitializationComplete()
+
 #undef RECOMMENDED_VERSION
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
@@ -146,6 +150,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+
+	TGS_TOPIC
 
 	if (T == "ping")
 		var/x = 1
@@ -234,8 +240,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		if(revdata.revision)
 			L["revision"] = revdata.revision
-			L["branch"] = revdata.branch
-			L["date"] = revdata.date
 		else
 			L["revision"] = "unknown"
 
@@ -484,6 +488,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		*/
 
+	TgsReboot()
+
 	processScheduler.stop()
 
 	if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
@@ -494,6 +500,9 @@ var/world_topic_spam_protect_time = world.timeofday
 		text2file("foo", "reboot_called")
 		to_world("<span class=danger>World reboot waiting for external scripts. Please be patient.</span>")
 		return
+
+	if(TgsAvailable())
+		TgsEndProcess()
 
 	..(reason)
 
