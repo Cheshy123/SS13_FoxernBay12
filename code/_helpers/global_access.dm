@@ -893,10 +893,6 @@
 			return global.midnight_rollovers;
 		if("mil_branches")
 			return global.mil_branches;
-		if("mining_floors")
-			return global.mining_floors;
-		if("mining_walls")
-			return global.mining_walls;
 		if("minor_air_alarms")
 			return global.minor_air_alarms;
 		if("minor_announcement")
@@ -2402,10 +2398,6 @@
 			global.midnight_rollovers=newval;
 		if("mil_branches")
 			global.mil_branches=newval;
-		if("mining_floors")
-			global.mining_floors=newval;
-		if("mining_walls")
-			global.mining_walls=newval;
 		if("minor_air_alarms")
 			global.minor_air_alarms=newval;
 		if("minor_announcement")
@@ -3464,8 +3456,6 @@
 	"meteors_threatening",
 	"midnight_rollovers",
 	"mil_branches",
-	"mining_floors",
-	"mining_walls",
 	"minor_air_alarms",
 	"minor_announcement",
 	"mob_equipped_event",

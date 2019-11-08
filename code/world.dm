@@ -147,7 +147,7 @@
 
 
 
-	spawn(3000)		//so we aren't adding to the round-start lag
+	spawn(2000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
 			ToRban_autoupdate()
 
