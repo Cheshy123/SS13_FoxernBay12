@@ -50,7 +50,13 @@ var/datum/controller/master/Master = new
 	var/map_loading = FALSE	//Are we loading in a new map?
 
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
+
+#ifdef UNIT_TEST
+	var/sleep_offline_after_initializations = FALSE
+#else
 	var/sleep_offline_after_initializations = TRUE
+#endif
+
 
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
