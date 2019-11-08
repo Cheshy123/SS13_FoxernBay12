@@ -51,9 +51,11 @@ var/list/client_preference_stats_
 /stat_client_preference/Click()
 	if(!usr.client)
 		return
+	if(!SScharacter_setup.initialized)
+		return
 	if(!usr.toggle_preference(client_preference))
 		return
-	usr.client.prefs.save_preferences()
+	SScharacter_setup.queue_preferences_save(usr.client.prefs)
 	to_chat(usr, "[client_preference.description]: [usr.is_preference_enabled(client_preference) ? client_preference.enabled_description : client_preference.disabled_description]")
 /stat_client_preference/proc/update_name(var/mob/user)
 	name = "[user.is_preference_enabled(client_preference) ? client_preference.enabled_description : client_preference.disabled_description]"

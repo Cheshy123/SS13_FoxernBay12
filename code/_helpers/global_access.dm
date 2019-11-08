@@ -87,6 +87,8 @@
 			return global.SKILLS;
 		if("SMALLSIZEBLOCK")
 			return global.SMALLSIZEBLOCK;
+		if("SScharacter_setup")
+			return global.SScharacter_setup;
 		if("SSgarbage")
 			return global.SSgarbage;
 		if("SSipintel")
@@ -1027,8 +1029,6 @@
 			return global.powernets;
 		if("powers")
 			return global.powers;
-		if("preferences_datums")
-			return global.preferences_datums;
 		if("priority_air_alarms")
 			return global.priority_air_alarms;
 		if("priority_announcement")
@@ -1560,6 +1560,8 @@
 			global.SKILLS=newval;
 		if("SMALLSIZEBLOCK")
 			global.SMALLSIZEBLOCK=newval;
+		if("SScharacter_setup")
+			global.SScharacter_setup=newval;
 		if("SSgarbage")
 			global.SSgarbage=newval;
 		if("SSipintel")
@@ -2500,8 +2502,6 @@
 			global.powernets=newval;
 		if("powers")
 			global.powers=newval;
-		if("preferences_datums")
-			global.preferences_datums=newval;
 		if("priority_air_alarms")
 			global.priority_air_alarms=newval;
 		if("priority_announcement")
@@ -2989,6 +2989,7 @@
 	"SHOCKIMMUNITYBLOCK",
 	"SKILLS",
 	"SMALLSIZEBLOCK",
+	"SScharacter_setup",
 	"SSgarbage",
 	"SSipintel",
 	"TELEBLOCK",
@@ -3459,7 +3460,6 @@
 	"powerinstances",
 	"powernets",
 	"powers",
-	"preferences_datums",
 	"priority_air_alarms",
 	"priority_announcement",
 	"prisonsecuritywarp",
