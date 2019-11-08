@@ -195,7 +195,6 @@
 	icon_state = "circuit_kit"
 	w_class = ITEM_SIZE_NORMAL
 
-	storage_ui = /datum/storage_ui/tgui
 	allow_quick_empty = FALSE
 
 /obj/item/weapon/storage/bag/circuits/basic/New()
