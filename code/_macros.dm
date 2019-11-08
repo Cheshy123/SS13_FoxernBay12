@@ -33,13 +33,9 @@
 
 #define isitem(A) istype(A, /obj/item)
 
-#define islist(A) istype(A, /list)
-
 #define isliving(A) istype(A, /mob/living)
 
 #define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
-
-#define ismovable(A) istype(A, /atom/movable)
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 
@@ -89,7 +85,7 @@
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
-#define any2ref(x) "\ref[x]"
+#define any2ref(x) ref(x)
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
