@@ -120,3 +120,7 @@ var/round_start_time = 0
 		sleep(i*world.tick_lag*DELTA_CALC)
 		i *= 2
 	while (world.tick_usage > min(TICK_LIMIT_TO_RUN, CURRENT_TICKLIMIT))
+
+//returns timestamp in a sql and a not-quite-compliant ISO 8601 friendly format
+/proc/SQLtime(timevar)
+	return time2text(timevar || world.timeofday, "YYYY-MM-DD hh:mm:ss")

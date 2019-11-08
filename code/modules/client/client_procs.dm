@@ -164,6 +164,8 @@
 
 	log_client_to_db()
 
+	check_ip_intel()
+
 	send_resources()
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -351,3 +353,11 @@ client/verb/character_setup()
 /client/proc/apply_fps(var/client_fps)
 	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)
 		vars["fps"] = prefs.clientfps
+
+/client/proc/check_ip_intel()
+	set waitfor = 0 //we sleep when getting the intel, no need to hold up the client connection while we sleep
+	if (config.ipintel_email)
+		var/datum/ipintel/res = get_ip_intel(address)
+		if (res.intel >= config.ipintel_rating_bad)
+			message_admins("<span class='adminnotice'>Proxy Detection: [key_name_admin(src)] IP intel rated [res.intel*100]% likely to be a Proxy/VPN.</span>")
+		ip_intel = res.intel
