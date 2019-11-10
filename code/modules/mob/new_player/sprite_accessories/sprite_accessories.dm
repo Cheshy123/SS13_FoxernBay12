@@ -17,6 +17,27 @@
 	conversion in savefile.dm
 */
 
+/proc/init_sprite_accessory_subtypes(var/prototype, var/list/L, var/list/male, var/list/female, var/list/full_list)
+	if(!istype(L))	L = list()
+	if(!istype(male))	male = list()
+	if(!istype(female))	female = list()
+	if(!istype(full_list))	full_list = list()
+
+	for(var/path in subtypesof(prototype))
+		var/datum/sprite_accessory/D = new path()
+
+		if(D.name)
+			L[D.name] = D
+			full_list[D.name] = D
+
+			switch(D.gender)
+				if(MALE)	male[D.name] = D
+				if(FEMALE)	female[D.name] = D
+				else
+					male[D.name] = D
+					female[D.name] = D
+	return L
+
 /datum/sprite_accessory
 
 	var/icon			// the icon file the accessory is located in
