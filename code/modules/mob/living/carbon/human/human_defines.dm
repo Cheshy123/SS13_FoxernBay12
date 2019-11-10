@@ -7,6 +7,9 @@
 	var/b_hair = 0
 	var/h_style = "Bald"
 
+	//Head 
+	var/head_style = "Default"
+
 	//Facial hair colour and style
 	var/r_facial = 0
 	var/g_facial = 0
@@ -27,6 +30,7 @@
 
 	var/list/m_colours = DEFAULT_MARKING_COLOURS //All colours set to #000000.
 	var/list/m_styles = DEFAULT_MARKING_STYLES //All markings set to None.
+	var/tail_style = "None"
 
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/damage_multiplier = 1 //multiplies melee combat damage
