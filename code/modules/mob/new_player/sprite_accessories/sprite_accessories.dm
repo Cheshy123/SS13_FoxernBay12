@@ -85,6 +85,17 @@
 	gender = NEUTER
 	species_allowed = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_ETHARI,SPECIES_SKRELL,SPECIES_VOX,SPECIES_IPC)
 
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Head Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+
+/datum/sprite_accessory/head
+	gender = NEUTER
+
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery
