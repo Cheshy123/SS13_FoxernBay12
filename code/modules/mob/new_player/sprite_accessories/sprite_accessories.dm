@@ -96,6 +96,17 @@
 /datum/sprite_accessory/head
 	gender = NEUTER
 
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Tail Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+
+/datum/sprite_accessory/tail
+	gender = NEUTER
+
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery

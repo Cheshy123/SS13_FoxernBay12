@@ -52,6 +52,9 @@ var/global/list/facial_hair_styles_female_list = list()
 var/global/list/head_styles_list = list()	//stores /datum/sprite_accessory/head indexed by name
 var/global/list/head_styles_male_list = list()
 var/global/list/head_styles_female_list = list()
+var/global/list/tail_styles_list = list()	//stores /datum/sprite_accessory/head indexed by name
+var/global/list/tail_styles_male_list = list()
+var/global/list/tail_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 
 var/datum/category_collection/underwear/global_underwear = new()
@@ -136,6 +139,9 @@ var/global/list/string_slot_flags = list(
 
 	//Head - Initialise all /datum/sprite_accessory/head into an list indexed by head-style name
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/head, null, head_styles_male_list, head_styles_female_list, head_styles_list)
+
+	//Tail - Initialise all /datum/sprite_accessory/tail into an list indexed by head-style name
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/tail, null, tail_styles_male_list, tail_styles_female_list, tail_styles_list)
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = typesof(/datum/surgery_step)-/datum/surgery_step
