@@ -58,6 +58,16 @@
 
 /obj/item/organ/external/head/update_icon()
 
+	//Override head icon if needed
+	if(species && (species.body_flags & CUSTOM_HEAD))
+		if(owner && owner.head_style)
+			var/datum/sprite_accessory/head/H = head_styles_list[owner.head_style]
+			if(istype(H))
+				src.force_icon = H.icon
+				src.icon_state = H.icon_state
+			else 
+				warning("[owner.name] have head style '[owner.head_style]' but it is not found.")
+
 	..()
 
 	if(owner)
