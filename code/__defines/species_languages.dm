@@ -25,6 +25,14 @@
 #define HAS_HAIR_COLOR    0x20   // Hair colour selectable in chargen. (RGB)
 #define RADIATION_GLOWS   0x40   // Radiation causes this character to glow.
 
+// Body custom flags
+#define CUSTOM_HEAD                 0x1     // Can change head
+#define CUSTOM_TAIL                 0x2     // Can change tail
+#define CUSTOM_HAS_HEAD_MARKING     0x4     // Can specify head markings
+#define CUSTOM_HAS_BODY_MARKING     0x8     // Can specify body markings
+#define CUSTOM_HAS_TAIL_MARKING     0x10    // Can specify tail markings
+#define CUSTOM_HAS_MARKING          (CUSTOM_HAS_HEAD_MARKING|CUSTOM_HAS_BODY_MARKING|CUSTOM_HAS_TAIL_MARKING)
+
 // Languages.
 #define LANGUAGE_GALCOM "Galactic Common"
 #define LANGUAGE_EAL "Encoded Audio Language"

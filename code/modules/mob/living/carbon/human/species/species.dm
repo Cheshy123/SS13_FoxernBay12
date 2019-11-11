@@ -131,6 +131,7 @@
 	var/darksight = 2             // Native darksight distance.
 	var/flags = 0                 // Various specific features.
 	var/appearance_flags = 0      // Appearance/display related features.
+	var/body_flags = 0            // Body custom flags(tails, custom heads an more)
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
