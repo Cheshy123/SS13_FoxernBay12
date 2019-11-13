@@ -115,7 +115,17 @@
 /////////////////////////////////////
 */
 /datum/sprite_accessory/body_markings
+	var/marking_location = ""
 	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/head
+	marking_location = "head"
+
+/datum/sprite_accessory/body_markings/body
+	marking_location = "body"
+
+/datum/sprite_accessory/body_markings/tail
+	marking_location = "tail"
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery

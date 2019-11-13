@@ -227,13 +227,48 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color</b><br>"
 		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin)]'><tr><td>__</td></tr></table></font><br>"
+
+	if(has_body_flag(mob_species, CUSTOM_HEAD))
+		. += "<br><b>Head style:</b>"
+		. += "<a href='?src=\ref[src];custom_head=1'>[pref.head_style]</a><br>"
+
+	if(has_body_flag(mob_species, CUSTOM_TAIL))
+		. += "<br><b>Tail style:</b>"
+		. += "<a href='?src=\ref[src];custom_tail=1'>[pref.tail_style]</a><br>"
+
+	if(has_body_flag(mob_species, CUSTOM_HAS_HEAD_MARKING))
+		var/mark_style = pref.m_styles["head"]
+		var/mark_color = pref.m_colours["head"]
+		. += "<br><b>Head markings</b><br>"
+		. += "Style: <a href='?src=\ref[src];choose_head_style=1'>[mark_style]</a><br>"
+		. += "<a href='?src=\ref[src];choose_head_style_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[mark_color]'><table style='display:inline;' bgcolor='#[mark_color]'><tr><td>__</td></tr></table></font><br>"
+
+	if(has_body_flag(mob_species, CUSTOM_HAS_BODY_MARKING))
+		var/mark_style = pref.m_styles["body"]
+		var/mark_color = pref.m_colours["body"]
+		. += "<br><b>Body markings</b><br>"
+		. += "Style: <a href='?src=\ref[src];choose_body_style=1'>[mark_style]</a><br>"
+		. += "<a href='?src=\ref[src];choose_body_style_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[mark_color]'><table style='display:inline;' bgcolor='#[mark_color]'><tr><td>__</td></tr></table></font><br>"
+
+	if(has_body_flag(mob_species, CUSTOM_HAS_TAIL_MARKING))
+		var/mark_style = pref.m_styles["tail"]
+		var/mark_color = pref.m_colours["tail"]
+		. += "<br><b>Tail markings</b><br>"
+		. += "Style: <a href='?src=\ref[src];choose_tail_style=1'>[mark_style]</a><br>"
+		. += "<a href='?src=\ref[src];choose_tail_style_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[mark_color]'><table style='display:inline;' bgcolor='#[mark_color]'><tr><td>__</td></tr></table></font><br>"
+
+
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/body/proc/has_flag(var/datum/species/mob_species, var/flag)
 	return mob_species && (mob_species.appearance_flags & flag)
 
+/datum/category_item/player_setup_item/general/body/proc/has_body_flag(var/datum/species/mob_species, var/flag)
+	return mob_species && (mob_species.body_flags & flag)
+
 /datum/category_item/player_setup_item/general/body/OnTopic(var/href,var/list/href_list, var/mob/user)
 	var/datum/species/mob_species = all_species[pref.species]
+	var/species = mob_species.get_bodytype()
 
 	if(href_list["random"])
 		pref.randomize_appearance_and_body_for()
@@ -558,6 +593,113 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["toggle_preview_value"])
 		pref.equip_preview_mob ^= text2num(href_list["toggle_preview_value"])
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["custom_head"])
+		var/list/valid_heades = list()
+		for(var/head in head_styles_list)
+			var/datum/sprite_accessory/S = head_styles_list[head]
+			if(!(mob_species.get_bodytype() in S.species_allowed))
+				continue
+			if(pref.gender != S.gender && S.gender != NEUTER)
+				continue
+
+			valid_heades[head] = head_styles_list[head]
+
+		var/new_h_style = input(user, "Choose your character's head style:", "Character Preference", pref.head_style)  as null|anything in valid_heades
+		if(new_h_style && CanUseTopic(user))
+			pref.head_style = new_h_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["custom_tail"])
+		var/list/valid_tails = list()
+		for(var/tail in tail_styles_list)
+			var/datum/sprite_accessory/S = tail_styles_list[tail]
+			if(!(mob_species.get_bodytype() in S.species_allowed))
+				continue
+
+			valid_tails[tail] = tail_styles_list[tail]
+
+		var/new_t_style = input(user, "Choose your character's tail style:", "Character Preference", pref.tail_style)  as null|anything in valid_tails
+		if(new_t_style && CanUseTopic(user))
+			pref.tail_style = new_t_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["choose_head_style"])
+		if(has_body_flag(mob_species, CUSTOM_HAS_HEAD_MARKING)) //Species with head markings.
+			var/list/valid_markings = list()
+			valid_markings["None"] = marking_styles_list["None"]
+			for(var/markingstyle in marking_styles_list)
+				var/datum/sprite_accessory/body_markings/head/M = marking_styles_list[markingstyle]
+				if(!(species in M.species_allowed))
+					continue
+				if(M.marking_location != "head")
+					continue
+
+				valid_markings += markingstyle
+			var/new_marking_style = input(user, "Choose the style of your character's head markings:", "Character Preference", pref.m_styles["head"]) as null|anything in valid_markings
+			if(new_marking_style)
+				pref.m_styles["head"] = new_marking_style
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["choose_head_style_color"])
+		if(has_body_flag(mob_species, CUSTOM_HAS_HEAD_MARKING)) //Species with head markings.
+			var/input = "Choose the colour of your your character's head markings:"
+			var/new_markings = input(user, input, "Character Preference", pref.m_colours["head"]) as color|null
+			if(new_markings)
+				pref.m_colours["head"] = new_markings
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["choose_body_style"])
+		if(has_body_flag(mob_species, CUSTOM_HAS_BODY_MARKING)) //Species with body markings/tattoos.
+			var/list/valid_markings = list()
+			valid_markings["None"] = marking_styles_list["None"]
+			for(var/markingstyle in marking_styles_list)
+				var/datum/sprite_accessory/body_markings/M = marking_styles_list[markingstyle]
+				if(!(species in M.species_allowed))
+					continue
+				if(M.marking_location != "body")
+					continue
+
+				valid_markings += markingstyle
+
+			var/new_marking_style = input(user, "Choose the style of your character's body markings:", "Character Preference", pref.m_styles["body"]) as null|anything in valid_markings
+			if(new_marking_style)
+				pref.m_styles["body"] = new_marking_style
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["choose_body_style_color"])
+		if(has_body_flag(mob_species, CUSTOM_HAS_BODY_MARKING)) //Species with body markings/tattoos.
+			var/input = "Choose the colour of your your character's body markings:"
+			var/new_markings = input(user, input, "Character Preference", pref.m_colours["body"]) as color|null
+			if(new_markings)
+				pref.m_colours["body"] = new_markings
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["choose_tail_style"])
+		if(has_body_flag(mob_species, CUSTOM_HAS_TAIL_MARKING)) //Species with tail markings.
+			var/list/valid_markings = list()
+			valid_markings["None"] = marking_styles_list["None"]
+			for(var/markingstyle in marking_styles_list)
+				var/datum/sprite_accessory/body_markings/tail/M = marking_styles_list[markingstyle]
+				if(M.marking_location != "tail")
+					continue
+				if(!(species in M.species_allowed))
+					continue
+
+				valid_markings += markingstyle
+			var/new_marking_style = input(user, "Choose the style of your character's tail markings:", "Character Preference", pref.m_styles["tail"]) as null|anything in valid_markings
+			if(new_marking_style)
+				pref.m_styles["tail"] = new_marking_style
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["choose_tail_style_color"])
+		if(has_body_flag(mob_species, CUSTOM_HAS_TAIL_MARKING)) //Species with tail markings.
+			var/input = "Choose the colour of your your character's tail markings:"
+			var/new_markings = input(user, input, "Character Preference", pref.m_colours["tail"]) as color|null
+			if(new_markings)
+				pref.m_colours["tail"] = new_markings
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
 
 	return ..()
 
