@@ -1,0 +1,53 @@
+language: generic
+dist: bionic
+sudo: false
+
+jobs:
+  include:
+    - name: "Code Checks"
+      addons: 
+        apt:
+          packages:
+            - gawk 
+            - python3 
+            - python3-pip 
+            - python3-yaml
+      env: TEST=CODE
+      script:
+        - ./tools/CI/run-test.sh
+
+    - &map-test
+      name: "Map - Example"
+      addons: 
+        apt:
+          packages:
+            - curl 
+            - unzip 
+            - make 
+            - libstdc++6:i386 
+            - python3 
+            - python3-pip 
+            - python3-yaml
+      env: &map-test-env
+        BYOND_MAJOR: 512
+        BYOND_MINOR: 1488
+        TEST: "MAP"
+        MAP_PATH: "example"
+      cache:
+        directories:
+          - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
+      script:
+        - ./tools/CI/run-test.sh
+        - ls $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR} -R
+
+    - <<: *map-test
+      name: "Map - Overmap Example"
+      env:
+        - *map-test-env
+        - MAP_PATH: "overmap_example"
+
+    - <<: *map-test
+      name: "Map - Exodus"
+      env:
+        - *map-test-env
+        - MAP_PATH: "exodus"
