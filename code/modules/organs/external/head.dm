@@ -57,6 +57,7 @@
 	eye_icon = "blank_eyes"
 
 /obj/item/organ/external/head/update_icon()
+	..()
 
 	//Override head icon if needed
 	if(species && (species.body_flags & CUSTOM_HEAD))
@@ -67,10 +68,9 @@
 				src.icon_state = H.icon_state
 			else 
 				warning("[owner.name] have head style '[owner.head_style]' but it is not found.")
+			overlays |= get_hair_icon()
 
-	..()
-
-	if(owner)
+	else if(owner)
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
 			var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[owner.species.vision_organ ? owner.species.vision_organ : BP_EYES]
