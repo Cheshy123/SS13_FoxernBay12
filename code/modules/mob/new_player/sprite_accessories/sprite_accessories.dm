@@ -107,6 +107,15 @@
 /datum/sprite_accessory/tail
 	gender = NEUTER
 
+/*
+/////////////////////////////////////
+/  =-----------------------------=  /
+/  == Body markings Definitions ==  /
+/  =-----------------------------=  /
+/////////////////////////////////////
+*/
+/datum/sprite_accessory/body_markings
+	gender = NEUTER
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery

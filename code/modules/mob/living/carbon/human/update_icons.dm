@@ -115,29 +115,30 @@ Please contact me on #coderbus IRC. ~Carn x
 #define MUTATIONS_LAYER			1
 #define DAMAGE_LAYER			2
 #define SURGERY_LEVEL			3		//bs12 specific.
-#define UNDERWEAR_LAYER         4
-#define UNIFORM_LAYER			5
-#define ID_LAYER				6
-#define SHOES_LAYER				7
-#define GLOVES_LAYER			8
-#define BELT_LAYER				9
-#define SUIT_LAYER				10
-#define TAIL_LAYER				11		//bs12 specific. this hack is probably gonna come back to haunt me
-#define GLASSES_LAYER			12
-#define BELT_LAYER_ALT			13
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				15
-#define HAIR_LAYER				16		//TODO: make part of head layer?
-#define EARS_LAYER				17
-#define FACEMASK_LAYER			18
-#define HEAD_LAYER				19
-#define COLLAR_LAYER			20
-#define HANDCUFF_LAYER			21
-#define L_HAND_LAYER			22
-#define R_HAND_LAYER			23
-#define FIRE_LAYER				24		//If you're on fire
-#define TARGETED_LAYER			25		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			25
+#define MARKINGS_LAYER          4
+#define UNDERWEAR_LAYER         5
+#define UNIFORM_LAYER			6
+#define ID_LAYER				7
+#define SHOES_LAYER				8
+#define GLOVES_LAYER			9
+#define BELT_LAYER				10
+#define SUIT_LAYER				11
+#define TAIL_LAYER				12		//bs12 specific. this hack is probably gonna come back to haunt me
+#define GLASSES_LAYER			13
+#define BELT_LAYER_ALT			14
+#define SUIT_STORE_LAYER		15
+#define BACK_LAYER				16
+#define HAIR_LAYER				17		//TODO: make part of head layer?
+#define EARS_LAYER				18
+#define FACEMASK_LAYER			19
+#define HEAD_LAYER				20
+#define COLLAR_LAYER			21
+#define HANDCUFF_LAYER			22
+#define L_HAND_LAYER			23
+#define R_HAND_LAYER			24
+#define FIRE_LAYER				25		//If you're on fire
+#define TARGETED_LAYER			26		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			26
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -349,6 +350,38 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
+	update_markings(0)
+
+//MARKINGS LAYER
+/mob/living/carbon/human/proc/update_markings(var/update_icons=1)
+	overlays_standing[MARKINGS_LAYER] = null
+
+	var/icon/markings_standing = icon("icon" = 'icons/mob/body_accessory.dmi', "icon_state" = "accessory_none_s")
+
+	if(species.body_flags & CUSTOM_HAS_HEAD_MARKING)
+		var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
+		if(head_organ && m_styles["head"])
+			var/head_marking = m_styles["head"]
+			var/datum/sprite_accessory/head_marking_style = marking_styles_list[head_marking]
+			if(head_marking_style && (species.name in head_marking_style.species_allowed))
+				var/icon/h_marking_s = icon("icon" = head_marking_style.icon, "icon_state" = "[head_marking_style.icon_state]_s")
+				if(head_marking_style.do_colouration)
+					h_marking_s.Blend(m_colours["head"], ICON_ADD)
+				markings_standing.Blend(h_marking_s, ICON_OVERLAY)
+
+	if(species.body_flags & CUSTOM_HAS_BODY_MARKING)
+		var/obj/item/organ/external/chest/chest_organ = get_organ(BP_CHEST)
+		if(chest_organ && m_styles["body"])
+			var/body_marking = m_styles["body"]
+			var/datum/sprite_accessory/body_marking_style = marking_styles_list[body_marking]
+			if(body_marking_style && (species.name in body_marking_style.species_allowed))
+				var/icon/b_marking_s = icon("icon" = body_marking_style.icon, "icon_state" = "[body_marking_style.icon_state]_s")
+				if(body_marking_style.do_colouration)
+					b_marking_s.Blend(m_colours["body"], ICON_ADD)
+				markings_standing.Blend(b_marking_s, ICON_OVERLAY)
+
+	overlays_standing[UNDERWEAR_LAYER] = markings_standing
+
 
 //UNDERWEAR OVERLAY
 
@@ -560,9 +593,11 @@ var/global/list/damage_icon_parts = list()
 	if(wear_suit)
 		overlays_standing[SUIT_LAYER]	= wear_suit.get_mob_overlay(src,slot_wear_suit_str)
 		update_tail_showing(0)
+		update_markings(0)
 	else
 		overlays_standing[SUIT_LAYER]	= null
 		update_tail_showing(0)
+		update_markings(0)
 		update_inv_w_uniform(0)
 		update_inv_shoes(0)
 		update_inv_gloves(0)
@@ -768,6 +803,7 @@ var/global/list/damage_icon_parts = list()
 #undef MUTATIONS_LAYER
 #undef DAMAGE_LAYER
 #undef SURGERY_LEVEL
+#undef MARKINGS_LAYER
 #undef UNIFORM_LAYER
 #undef ID_LAYER
 #undef SHOES_LAYER

@@ -52,9 +52,10 @@ var/global/list/facial_hair_styles_female_list = list()
 var/global/list/head_styles_list = list()	//stores /datum/sprite_accessory/head indexed by name
 var/global/list/head_styles_male_list = list()
 var/global/list/head_styles_female_list = list()
-var/global/list/tail_styles_list = list()	//stores /datum/sprite_accessory/head indexed by name
+var/global/list/tail_styles_list = list()	//stores /datum/sprite_accessory/tail indexed by name
 var/global/list/tail_styles_male_list = list()
 var/global/list/tail_styles_female_list = list()
+var/global/list/marking_styles_list = list() //stores /datum/sprite_accessory/body_markings
 var/global/list/skin_styles_female_list = list()		//unused
 
 var/datum/category_collection/underwear/global_underwear = new()
