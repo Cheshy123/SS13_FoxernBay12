@@ -53,6 +53,8 @@
 	var/gear_slot = 1					//The current gear save slot
 	var/list/m_styles = DEFAULT_MARKING_STYLES			//Marking styles.
 	var/list/m_colours = DEFAULT_MARKING_COLOURS		//Marking colours.
+	var/tail_style = "None"
+	var/head_style = "Default"
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
@@ -316,6 +318,11 @@
 
 	character.h_style = h_style
 	character.f_style = f_style
+
+	character.head_style = head_style
+	character.tail_style = tail_style
+	character.m_styles = m_styles
+	character.m_colours = m_colours
 
 	// Replace any missing limbs.
 	for(var/name in BP_ALL_LIMBS)

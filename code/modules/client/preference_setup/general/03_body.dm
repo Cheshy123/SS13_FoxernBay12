@@ -9,27 +9,31 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	sort_order = 3
 
 /datum/category_item/player_setup_item/general/body/load_character(var/savefile/S)
-	S["species"]			>> pref.species
-	S["hair_red"]			>> pref.r_hair
-	S["hair_green"]			>> pref.g_hair
-	S["hair_blue"]			>> pref.b_hair
-	S["facial_red"]			>> pref.r_facial
-	S["facial_green"]		>> pref.g_facial
-	S["facial_blue"]		>> pref.b_facial
-	S["skin_tone"]			>> pref.s_tone
-	S["skin_red"]			>> pref.r_skin
-	S["skin_green"]			>> pref.g_skin
-	S["skin_blue"]			>> pref.b_skin
-	S["hair_style_name"]	>> pref.h_style
-	S["facial_style_name"]	>> pref.f_style
-	S["eyes_red"]			>> pref.r_eyes
-	S["eyes_green"]			>> pref.g_eyes
-	S["eyes_blue"]			>> pref.b_eyes
-	S["b_type"]				>> pref.b_type
-	S["disabilities"]		>> pref.disabilities
-	S["organ_data"]			>> pref.organ_data
-	S["rlimb_data"]			>> pref.rlimb_data
-	S["has_cortical_stack"] >> pref.has_cortical_stack
+	S["species"]				>> pref.species
+	S["hair_red"]				>> pref.r_hair
+	S["hair_green"]				>> pref.g_hair
+	S["hair_blue"]				>> pref.b_hair
+	S["facial_red"]				>> pref.r_facial
+	S["facial_green"]			>> pref.g_facial
+	S["facial_blue"]			>> pref.b_facial
+	S["skin_tone"]				>> pref.s_tone
+	S["skin_red"]				>> pref.r_skin
+	S["skin_green"]				>> pref.g_skin
+	S["skin_blue"]				>> pref.b_skin
+	S["hair_style_name"]		>> pref.h_style
+	S["facial_style_name"]		>> pref.f_style
+	S["eyes_red"]				>> pref.r_eyes
+	S["eyes_green"]				>> pref.g_eyes
+	S["eyes_blue"]				>> pref.b_eyes
+	S["b_type"]					>> pref.b_type
+	S["disabilities"]			>> pref.disabilities
+	S["organ_data"]				>> pref.organ_data
+	S["rlimb_data"]				>> pref.rlimb_data
+	S["has_cortical_stack"] 	>> pref.has_cortical_stack
+	S["head_style"]         	>> pref.head_style
+	S["tail_style"]         	>> pref.tail_style
+	params2list(S["m_styles"])  >> pref.m_styles
+	params2list(S["m_colours"]) >> pref.m_colours
 	pref.preview_icon = null
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
@@ -54,6 +58,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["organ_data"]			<< pref.organ_data
 	S["rlimb_data"]			<< pref.rlimb_data
 	S["has_cortical_stack"] << pref.has_cortical_stack
+	S["head_style"]         << pref.head_style
+	S["tail_style"]         << pref.tail_style
+	S["m_styles"]   		<< list2params(pref.m_styles)
+	S["m_colours"]  		<< list2params(pref.m_colours)
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in playable_species))
@@ -75,6 +83,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 	pref.has_cortical_stack = sanitize_bool(pref.has_cortical_stack, initial(pref.has_cortical_stack))
+
+	pref.head_style     = sanitize_text(pref.head_style, initial(pref.head_style))
+	pref.tail_style     = sanitize_text(pref.tail_style, initial(pref.tail_style))
+	for(var/marking_location in pref.m_styles)
+		pref.m_styles[marking_location] = sanitize_inlist(pref.m_styles[marking_location], marking_styles_list, DEFAULT_MARKING_STYLES[marking_location])
+	for(var/marking_location in pref.m_colours)
+		pref.m_colours[marking_location] = sanitize_hexcolor(pref.m_colours[marking_location], DEFAULT_MARKING_COLOURS[marking_location])
+
 
 	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
 	if(!pref.organ_data) pref.organ_data = list()
