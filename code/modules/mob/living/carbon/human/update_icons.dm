@@ -647,21 +647,34 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 /mob/living/carbon/human/proc/get_tail_icon()
-	var/icon_key = "[species.get_race_key(src)][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
+	var/is_custom_tail = (species.body_flags & CUSTOM_TAIL)
+
+	var/icon_key_custom_suff = is_custom_tail ? "[src.tail_style]" : ""
+	var/icon_key = "[species.get_race_key(src)][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair][icon_key_custom_suff]"
 	var/icon/tail_icon = tail_icon_cache[icon_key]
 	if(!tail_icon)
-		//generate a new one
-		var/species_tail_anim = species.get_tail_animation(src)
-		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
-		tail_icon = new/icon(species_tail_anim)
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-		// The following will not work with animated tails.
-		var/use_species_tail = species.get_tail_hair(src)
-		if(use_species_tail)
-			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-			tail_icon.Blend(hair_icon, ICON_OVERLAY)
-		tail_icon_cache[icon_key] = tail_icon
+
+		if(is_custom_tail)
+			var/datum/sprite_accessory/tail/T = tail_styles_list[tail_style]
+			if(istype(T))
+				tail_icon = new icon(T.icon)
+				tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+				tail_icon_cache[icon_key] = tail_icon
+			else
+				warning("Cannot find tail style [tail_style]")
+		else //STANDART Tails
+			//generate a new one
+			var/species_tail_anim = species.get_tail_animation(src)
+			if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
+			tail_icon = new/icon(species_tail_anim)
+			tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			// The following will not work with animated tails.
+			var/use_species_tail = species.get_tail_hair(src)
+			if(use_species_tail)
+				var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
+				hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+				tail_icon.Blend(hair_icon, ICON_OVERLAY)
+			tail_icon_cache[icon_key] = tail_icon
 
 	return tail_icon
 
