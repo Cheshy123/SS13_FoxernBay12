@@ -179,6 +179,13 @@ var/list/gamemode_cache = list()
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 
+	//IP Intel vars
+	var/ipintel_email
+	var/ipintel_rating_bad = 1
+	var/ipintel_save_good = 12
+	var/ipintel_save_bad = 1
+	var/ipintel_domain = "check.getipintel.net"
+
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
@@ -652,6 +659,22 @@ var/list/gamemode_cache = list()
 
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
+
+				if("ipintel_email")
+					if (value != "ch@nge.me")
+						config.ipintel_email = value
+
+				if("ipintel_rating_bad")
+					config.ipintel_rating_bad = text2num(value)
+
+				if("ipintel_domain")
+					config.ipintel_domain = value
+
+				if("ipintel_save_good")
+					config.ipintel_save_good = text2num(value)
+
+				if("ipintel_save_bad")
+					config.ipintel_save_bad = text2num(value)
 
 				if("allow_cult_ghostwriter")
 					config.cult_ghostwriter = 1
