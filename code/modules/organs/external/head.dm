@@ -57,7 +57,7 @@
 	eye_icon = "blank_eyes"
 
 /obj/item/organ/external/head/update_icon()
-	..()
+	
 
 	//Override head icon if needed
 	if(species && (species.body_flags & CUSTOM_HEAD))
@@ -65,12 +65,13 @@
 			var/datum/sprite_accessory/head/H = head_styles_list[owner.head_style]
 			if(istype(H))
 				src.force_icon = H.icon
-				src.icon_state = H.icon_state
+				src.icon_name = H.icon_state
 			else 
 				warning("[owner.name] have head style '[owner.head_style]' but it is not found.")
-			overlays |= get_hair_icon()
 
-	else if(owner)
+	..()
+
+	if(owner)
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
 			var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[owner.species.vision_organ ? owner.species.vision_organ : BP_EYES]
@@ -112,3 +113,11 @@
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_ADD)
 			res.overlays |= hair_s
 	return res
+
+/obj/item/organ/external/head/get_icon_key()
+	var/icon_key = ..()
+	if(species && (species.body_flags & CUSTOM_HEAD))
+		if(owner && owner.head_style)
+			icon_key += "[owner.head_style]"
+
+	return icon_key

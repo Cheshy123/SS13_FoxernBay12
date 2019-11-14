@@ -95,6 +95,29 @@ var/list/limb_icon_cache = list()
 	update_icon()
 	return mob_icon
 
+/obj/item/organ/external/proc/get_icon_key()
+	var/icon_key = ""
+	icon_key += "[species.get_race_key(owner)]"
+	icon_key += "[dna.GetUIState(DNA_UI_GENDER)]"
+	icon_key += "[s_tone]"
+
+	if(s_col && s_col.len >= 3)
+		icon_key += "[rgb(s_col[1],s_col[2],s_col[3])]"
+
+	if(body_hair && h_col && h_col.len >= 3)
+		icon_key += "[rgb(h_col[1],h_col[2],h_col[3])]"
+	else
+		icon_key += "#000000"
+
+	if(robotic >= ORGAN_ROBOT)
+		icon_key += "2[model ? "-[model]": ""]"
+	else if(status & ORGAN_DEAD)
+		icon_key += "3"
+	else
+		icon_key += "1"
+
+	return icon_key
+
 // Returns an image for use by the human health dolly HUD element.
 // If the limb is in pain, it will be used as a minimum damage
 // amount to represent the obfuscation of being in agonizing pain.
