@@ -139,12 +139,11 @@ var/list/point_source_descriptions = list(
 	var/ordernum
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
+	var/list/donelist = list()
 	var/list/master_supply_list = list()
 	//shuttle movement
 	var/movetime = 1200
 	var/datum/shuttle/ferry/supply/shuttle
-
-	var/obj/machinery/computer/supply/primaryterminal //terminal hardcopy forms will be printed to.
 
 
 	New()
@@ -246,6 +245,7 @@ var/list/point_source_descriptions = list(
 			var/turf/pickedloc = clear_turfs[i]
 			clear_turfs.Cut(i,i+1)
 			shoppinglist -= S
+			donelist += S
 
 			var/datum/supply_order/SO = S
 			var/decl/hierarchy/supply_pack/SP = SO.object

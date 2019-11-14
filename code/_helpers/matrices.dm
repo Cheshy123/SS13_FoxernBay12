@@ -16,13 +16,6 @@
 	animate(transform = m240, time = speed)
 	animate(transform = m360, time = speed)
 
-//The X pixel offset of this matrix
-/matrix/proc/get_x_shift()
-	. = c
-
-//The Y pixel offset of this matrix
-/matrix/proc/get_y_shift()
-	. = f
 // Color matrices:
 
 //Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.

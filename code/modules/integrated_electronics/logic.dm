@@ -208,82 +208,79 @@
 	..()
 
 /obj/item/integrated_circuit/logic/unary/access_verifier/attack_self(var/mob/user)
-	tg_ui_interact(user)
+	ui_interact(user)
 
-/obj/item/integrated_circuit/logic/unary/access_verifier/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_hands_state)
-	tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/integrated_circuit/logic/unary/access_verifier/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/topic_state/state = hands_state)
+	var/list/data = ui_data()
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "airlock_electronics", src.name, 1000, 500, master_ui, state)
+		ui = new(user, src, ui_key, "airlock_electronics.tmpl", src.name, 1000, 500, null, null, state)
+		ui.set_initial_data(data)
 		ui.open()
 
 /obj/item/integrated_circuit/logic/unary/access_verifier/ui_data()
-	if(!cached_ui_data)
-		cached_ui_data = list()
-		if(!locked)
-			var/list/regions = list()
-			var/accesses_by_region = list()
-			for(var/i in available_accesses)
-				var/datum/access/A = get_access_by_id(i)
-				group_by(accesses_by_region, num2text(A.region), A.)
-			regions = sortAssoc(regions)
+	var/list/data = list()
+	var/list/regions = list()
 
-			for(var/region_key in accesses_by_region)
-				var/list/region = list()
-				var/list/accesses = list()
-				for(var/j in accesses_by_region[region_key])
-					var/list/access = list()
-					var/datum/access/A = j
-					access["name"] = A.desc
-					access["id"] = A.id
-					access["req"] = (A.id in checked_accesses)
-					accesses[++accesses.len] = access
-				region["name"] = get_region_accesses_name(text2num(region_key))
-				region["accesses"] = accesses
-				regions[++regions.len] = region
-			cached_ui_data["regions"] = regions
-			cached_ui_data["oneAccess"] = requires_one
-		cached_ui_data["locked"] = locked
-		cached_ui_data["lockable"] = TRUE
-	return cached_ui_data
+	for(var/i in ACCESS_REGION_SECURITY to ACCESS_REGION_SUPPLY) //code/game/jobs/_access_defs.dm
+		var/list/region = list()
+		var/list/accesses = list()
+		for(var/j in get_region_accesses(i))
+			var/list/access = list()
+			access["name"] = get_access_desc(j)
+			access["id"] = j
+			access["allowed"] = (j in checked_accesses) ? 1 : 0
+			accesses[++accesses.len] = access
+		region["name"] = get_region_accesses_name(i)
+		region["accesses"] = accesses
+		regions[++regions.len] = region
+	data["regions"] = regions
+	data["oneAccess"] = requires_one
+	data["locked"] = locked
+	data["lockable"] = TRUE
 
-/obj/item/integrated_circuit/logic/unary/access_verifier/ui_act(action, params)
+	return data
+
+/obj/item/integrated_circuit/logic/unary/access_verifier/Topic(var/href, var/list/href_list)
 	if(..())
-		return TRUE
-	switch(action)
-		if("clear")
-			checked_accesses.Cut()
-			requires_one = FALSE
-			. = TRUE
-		if("one_access")
-			requires_one = !requires_one
-			cached_ui_data = null
-			. =  TRUE
-		if("set")
-			var/access = text2num(params["access"])
-			if(!(access in available_accesses))
-				return FALSE
-			if (!(access in checked_accesses))
-				checked_accesses += access
-			else
-				checked_accesses -= access
-			. =  TRUE
-		if("unlock")
-			if(!locked)
-				return FALSE
-			var/obj/item/weapon/card/id/I = usr.GetIdCard()
-			if(!istype(I, /obj/item/weapon/card/id))
-				to_chat(usr, "<span class='warning'>\The [src] flashes a yellow LED near the ID scanner. Did you misplace your ID?</span>")
-				return FALSE
+		return 1
+	if(href_list["unlock"])
+		if(!req_access || istype(usr, /mob/living/silicon))
 			locked = FALSE
-			last_configurator = GetNameAndAssignmentFromId(I)
-			. = TRUE
-		if("lock")
-			if(!locked)
-				locked = TRUE
-				. = TRUE
+			last_configurator = usr.name
+		else
+			var/obj/item/weapon/card/id/I = usr.get_active_hand()
+			I = I ? I.GetIdCard() : null
+			if(!istype(I, /obj/item/weapon/card/id))
+				to_chat(usr, "<span class='warning'>[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?</span>")
+				return
+			if (check_access(I))
+				locked = FALSE
+				last_configurator = I.registered_name
+			else
+				to_chat(usr, "<span class='warning'>[\src] flashes a red LED near the ID scanner, indicating your access has been denied.</span>")
+				return
+		return 1
+	else if(href_list["lock"])
+		locked = TRUE
+		return 1
 
-	if(.)
-		cached_ui_data = null
+	if(href_list["clear"])
+		checked_accesses = list()
+		requires_one = FALSE
+		return 1
+	if(href_list["requires_one"])
+		requires_one = !requires_one
+		return 1
+	if(href_list["allowed"])
+		var/access_type = text2num(href_list["access_target"])
+		var/access_allowed = text2num(href_list["allowed"])
+		if(!access_allowed)
+			checked_accesses += access_type
+		else
+			checked_accesses -= access_type
+		return 1
 
 /obj/item/integrated_circuit/logic/unary/access_verifier/examine/(var/mob/user)
 	. = ..(user, 1)

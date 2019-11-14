@@ -39939,7 +39939,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "bxZ" = (
-/obj/machinery/computer/supply,
+/obj/item/modular_computer/console/preset/supply,
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "bya" = (
@@ -44163,7 +44163,6 @@
 	},
 /obj/item/weapon/circuitboard/arcade/battle,
 /obj/item/weapon/circuitboard/arcade/orion_trail,
-/obj/item/weapon/circuitboard/supplycomp,
 /turf/simulated/floor/plating,
 /area/storage/tech)
 "bFK" = (
@@ -44389,7 +44388,7 @@
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "bGg" = (
-/obj/machinery/computer/supply,
+/obj/item/modular_computer/console/preset/supply,
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "bGh" = (
@@ -45185,7 +45184,6 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/weapon/circuitboard/supplycomp,
 /turf/simulated/floor/plating,
 /area/storage/tech)
 "bHv" = (

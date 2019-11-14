@@ -68,24 +68,6 @@ obj/machinery/resleever/process()
 	update_use_power(0)
 	return
 
-/obj/machinery/resleever/proc/isOccupiedEjectable()
-	if(occupant)
-		if(!resleeving)
-			return 1
-	return 0
-
-/obj/machinery/resleever/proc/isLaceEjectable()
-	if(lace)
-		if(!resleeving)
-			return 1
-	return 0
-
-/obj/machinery/resleever/proc/readyToBegin()
-	if(lace && occupant)
-		if(!resleeving)
-			return 1
-	return 0
-
 /obj/machinery/resleever/attack_ai(mob/user as mob)
 
 	add_hiddenprint(user)
@@ -100,47 +82,40 @@ obj/machinery/resleever/process()
 		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 
-	tg_ui_interact(user)
+	ui_interact(user)
 
-/obj/machinery/resleever/ui_status(mob/user, datum/ui_state/state)
-	if(!anchored || inoperable())
-		return UI_CLOSE
-	return ..()
-
-
-/obj/machinery/resleever/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = default_state)
-	ui = tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "resleever", "Neural Lace Resleever", 300, 300, master_ui, state)
-		ui.open()
-
-/obj/machinery/resleever/ui_data()
+/obj/machinery/resleever/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/data = list(
 		"name" = occupant_name,
 		"lace" = lace_name,
-		"isOccupiedEjectable" = isOccupiedEjectable(),
-		"isLaceEjectable" = isLaceEjectable(),
+		"isOccupiedEjectable" = occupant && !resleeving,
+		"isLaceEjectable" = lace && !resleeving,
 		"active" = resleeving,
 		"remaining" = remaining,
 		"timetosleeve" = 120,
-		"ready" = readyToBegin()
+		"ready" = occupant && lace && !resleeving
 	)
 
-	return data
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "resleever.tmpl", "Neural Lace Resleever", 300, 370)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
 
-/obj/machinery/resleever/ui_act(action, params)
-	if(..())
-		return TRUE
-	switch(action)
-		if("begin")
-			sleeve()
+/obj/machinery/resleever/Topic(var/href, var/list/href_list)
+	if (href_list["begin"])
+		if(sleeve())
 			resleeving = 1
-		if("eject")
-			eject_occupant()
-		if("ejectlace")
-			eject_lace()
-	update_icon()
-	return TRUE
+		return 1
+
+	if (href_list["eject"])
+		eject_occupant()
+		return 1
+
+	if (href_list["ejectlace"])
+		eject_lace()
+		return 1
 
 /obj/machinery/resleever/proc/sleeve()
 	if(lace && occupant)
@@ -234,37 +209,18 @@ obj/machinery/resleever/process()
 	lace = null
 	lace_name = null
 
-/obj/machinery/resleever/emp_act(severity)
-	//if(prob(100/severity))
-		//malfunction() //NOT DEFINED YET
-	..()
-
-
-
 /obj/machinery/resleever/ex_act(severity)
+	var/killprob = 100
 	switch(severity)
-		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(loc)
-				ex_act(severity)
-			qdel(src)
-			return
-		if(2.0)
-			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(loc)
-					ex_act(severity)
-				qdel(src)
-				return
-		if(3.0)
-			if(prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(loc)
-					ex_act(severity)
-				qdel(src)
-				return
-		else
-	return
+		if(2)
+			killprob = 50
+		if(3)
+			killprob = 25
+	if(prob(killprob))
+		for(var/atom/movable/A in src)
+			A.forceMove(loc)
+			A.ex_act(severity)
+		qdel(src)
 
 /obj/machinery/resleever/update_icon()
 	..()
