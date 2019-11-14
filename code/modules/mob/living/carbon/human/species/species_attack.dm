@@ -26,7 +26,7 @@
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 
 	if(!skill)	skill = 1
-	attack_damage = Clamp(attack_damage, 1, 5)
+	attack_damage = clamp(attack_damage, 1, 5)
 
 	if(target == user)
 		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] \himself in the [affecting.name]!</span>")
