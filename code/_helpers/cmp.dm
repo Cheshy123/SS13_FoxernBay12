@@ -17,7 +17,7 @@
 	return sorttext(b.name, a.name)
 
 /proc/cmp_subsystem_init(datum/controller/subsystem/a, datum/controller/subsystem/b)
-	return b.init_order - a.init_order
+	return initial(b.init_order) - initial(a.init_order)
 
 /proc/cmp_subsystem_priority(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return a.priority - b.priority

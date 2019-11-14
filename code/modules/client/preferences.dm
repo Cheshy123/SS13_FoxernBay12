@@ -1,8 +1,6 @@
 #define SAVE_RESET -1
 
-var/list/preferences_datums = list()
-
-datum/preferences
+/datum/preferences
 	//doohickeys for savefiles
 	var/path
 	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
@@ -114,6 +112,17 @@ datum/preferences
 
 
 /datum/preferences/New(client/C)
+	if(istype(C))
+		client = C
+		client_ckey = C.ckey
+		SScharacter_setup.preferences_datums[C.ckey] = src
+		if(SScharacter_setup.initialized)
+			setup()
+		else
+			SScharacter_setup.prefs_awaiting_setup += src
+	..()
+
+/datum/preferences/proc/setup()
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
@@ -121,13 +130,11 @@ datum/preferences
 
 	gear = list()
 
-	if(istype(C))
-		client = C
-		client_ckey = C.ckey
-		if(!IsGuestKey(C.key))
-			load_path(C.ckey)
-			load_preferences()
-			load_and_update_character()
+	if(client && !IsGuestKey(client.key))
+		load_path(client.ckey)
+		load_preferences()
+		load_and_update_character()
+	sanitize_preferences()
 
 /datum/preferences/proc/load_and_update_character(var/slot)
 	load_character(slot)
@@ -188,7 +195,10 @@ datum/preferences
 			return "God"
 
 /datum/preferences/proc/ShowChoices(mob/user)
-	if(!user || !user.client)	return
+	if(!SScharacter_setup.initialized)
+		return
+	if(!user || !user.client)
+		return
 
 	if(!get_mob_by_key(client_ckey))
 		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")

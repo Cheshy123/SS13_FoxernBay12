@@ -11,11 +11,15 @@
 	//	use the SS_NO_FIRE flag instead for systems that never fire to keep it from even being added to the list
 	var/can_fire = TRUE
 
+	var/initialized = FALSE	//set to TRUE after it has been initialized, will obviously never be set if the subsystem doesn't initialize
+
+
 	// Bookkeeping variables; probably shouldn't mess with these.
 	var/last_fire = 0		//last world.time we called fire()
 	var/next_fire = 0		//scheduled world.time for next fire()
 	var/cost = 0			//average time to execute
 	var/tick_usage = 0		//average tick usage
+	var/tick_overrun = 0	//average tick overrun
 	var/state = SS_IDLE		//tracks the current state of the ss, running, paused, etc.
 	var/paused_ticks = 0	//ticks this ss is taking to run right now.
 	var/paused_tick_usage	//total tick_usage of all of our runs while pausing this run
@@ -27,8 +31,17 @@
 	var/datum/controller/subsystem/queue_next
 	var/datum/controller/subsystem/queue_prev
 
+	var/static/list/failure_strikes //How many times we suspect a subsystem type has crashed the MC, 3 strikes and you're out!
+	var/runlevels = RUNLEVELS_DEFAULT	//points of the game at which the SS can fire
+
+//Do not override
+///datum/controller/subsystem/New()
+
 // Used to initialize the subsystem BEFORE the map has loaded
-/datum/controller/subsystem/New()
+// Called AFTER Recover if that is called
+// Prefer to use Initialize if possible
+/datum/controller/subsystem/proc/PreInit()
+	return
 
 //This is used so the mc knows when the subsystem sleeps. do not override.
 /datum/controller/subsystem/proc/ignite(resumed = 0)
@@ -143,6 +156,7 @@
 
 //used to initialize the subsystem AFTER the map has loaded
 /datum/controller/subsystem/Initialize(start_timeofday)
+	initialized = TRUE
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
 	to_chat(world, "<span class='boldannounce'>[msg]</span>")

@@ -56,6 +56,8 @@ var/religion_name = null
 	return pick("terrestial planet", "ice planet", "dwarf planet", "desert planet", "ocean planet", "lava planet", "gas giant", "forest planet")
 
 /proc/station_name()
+	if(!using_map)
+		return station_name
 	if (using_map.station_name)
 		return using_map.station_name
 

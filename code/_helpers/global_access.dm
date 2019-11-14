@@ -25,8 +25,6 @@
 			return global.CMinutes;
 		if("COUGHBLOCK")
 			return global.COUGHBLOCK;
-		if("CURRENT_TICKLIMIT")
-			return global.CURRENT_TICKLIMIT;
 		if("DEAFBLOCK")
 			return global.DEAFBLOCK;
 		if("DEPT_FREQS")
@@ -59,12 +57,6 @@
 			return global.INCREASERUNBLOCK;
 		if("LIGHTING_CORNER_DIAGONAL")
 			return global.LIGHTING_CORNER_DIAGONAL;
-		if("MC_restart_clear")
-			return global.MC_restart_clear;
-		if("MC_restart_count")
-			return global.MC_restart_count;
-		if("MC_restart_timeout")
-			return global.MC_restart_timeout;
 		if("MONKEYBLOCK")
 			return global.MONKEYBLOCK;
 		if("MORPHBLOCK")
@@ -95,8 +87,12 @@
 			return global.SKILLS;
 		if("SMALLSIZEBLOCK")
 			return global.SMALLSIZEBLOCK;
+		if("SScharacter_setup")
+			return global.SScharacter_setup;
 		if("SSgarbage")
 			return global.SSgarbage;
+		if("SSipintel")
+			return global.SSipintel;
 		if("TELEBLOCK")
 			return global.TELEBLOCK;
 		if("TWITCHBLOCK")
@@ -295,6 +291,8 @@
 			return global.base_miss_chance;
 		if("basic_robolimb")
 			return global.basic_robolimb;
+		if("bitflags")
+			return global.bitflags;
 		if("blackbox")
 			return global.blackbox;
 		if("blocked")
@@ -1031,8 +1029,6 @@
 			return global.powernets;
 		if("powers")
 			return global.powers;
-		if("preferences_datums")
-			return global.preferences_datums;
 		if("priority_air_alarms")
 			return global.priority_air_alarms;
 		if("priority_announcement")
@@ -1269,6 +1265,8 @@
 			return global.station_date;
 		if("station_departments")
 			return global.station_departments;
+		if("station_name")
+			return global.station_name;
 		if("status_icons_to_colour")
 			return global.status_icons_to_colour;
 		if("stool_cache")
@@ -1500,8 +1498,6 @@
 			global.CMinutes=newval;
 		if("COUGHBLOCK")
 			global.COUGHBLOCK=newval;
-		if("CURRENT_TICKLIMIT")
-			global.CURRENT_TICKLIMIT=newval;
 		if("DEAFBLOCK")
 			global.DEAFBLOCK=newval;
 		if("DEPT_FREQS")
@@ -1534,12 +1530,6 @@
 			global.INCREASERUNBLOCK=newval;
 		if("LIGHTING_CORNER_DIAGONAL")
 			global.LIGHTING_CORNER_DIAGONAL=newval;
-		if("MC_restart_clear")
-			global.MC_restart_clear=newval;
-		if("MC_restart_count")
-			global.MC_restart_count=newval;
-		if("MC_restart_timeout")
-			global.MC_restart_timeout=newval;
 		if("MONKEYBLOCK")
 			global.MONKEYBLOCK=newval;
 		if("MORPHBLOCK")
@@ -1570,8 +1560,12 @@
 			global.SKILLS=newval;
 		if("SMALLSIZEBLOCK")
 			global.SMALLSIZEBLOCK=newval;
+		if("SScharacter_setup")
+			global.SScharacter_setup=newval;
 		if("SSgarbage")
 			global.SSgarbage=newval;
+		if("SSipintel")
+			global.SSipintel=newval;
 		if("TELEBLOCK")
 			global.TELEBLOCK=newval;
 		if("TWITCHBLOCK")
@@ -1770,6 +1764,8 @@
 			global.base_miss_chance=newval;
 		if("basic_robolimb")
 			global.basic_robolimb=newval;
+		if("bitflags")
+			global.bitflags=newval;
 		if("blackbox")
 			global.blackbox=newval;
 		if("blocked")
@@ -2506,8 +2502,6 @@
 			global.powernets=newval;
 		if("powers")
 			global.powers=newval;
-		if("preferences_datums")
-			global.preferences_datums=newval;
 		if("priority_air_alarms")
 			global.priority_air_alarms=newval;
 		if("priority_announcement")
@@ -2744,6 +2738,8 @@
 			global.station_date=newval;
 		if("station_departments")
 			global.station_departments=newval;
+		if("station_name")
+			global.station_name=newval;
 		if("status_icons_to_colour")
 			global.status_icons_to_colour=newval;
 		if("stool_cache")
@@ -2962,7 +2958,6 @@
 	"CLUMSYBLOCK",
 	"CMinutes",
 	"COUGHBLOCK",
-	"CURRENT_TICKLIMIT",
 	"DEAFBLOCK",
 	"DEPT_FREQS",
 	"DIFFMUT",
@@ -2979,9 +2974,6 @@
 	"IClog",
 	"INCREASERUNBLOCK",
 	"LIGHTING_CORNER_DIAGONAL",
-	"MC_restart_clear",
-	"MC_restart_count",
-	"MC_restart_timeout",
 	"MONKEYBLOCK",
 	"MORPHBLOCK",
 	"Master",
@@ -2997,7 +2989,9 @@
 	"SHOCKIMMUNITYBLOCK",
 	"SKILLS",
 	"SMALLSIZEBLOCK",
+	"SScharacter_setup",
 	"SSgarbage",
+	"SSipintel",
 	"TELEBLOCK",
 	"TWITCHBLOCK",
 	"Tier1Runes",
@@ -3097,6 +3091,7 @@
 	"backbaglist",
 	"base_miss_chance",
 	"basic_robolimb",
+	"bitflags",
 	"blackbox",
 	"blocked",
 	"bomb_set",
@@ -3465,7 +3460,6 @@
 	"powerinstances",
 	"powernets",
 	"powers",
-	"preferences_datums",
 	"priority_air_alarms",
 	"priority_announcement",
 	"prisonsecuritywarp",
@@ -3584,6 +3578,7 @@
 	"station_account",
 	"station_date",
 	"station_departments",
+	"station_name",
 	"status_icons_to_colour",
 	"stool_cache",
 	"stored_shock_by_ref",
