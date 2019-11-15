@@ -396,3 +396,9 @@
 //Mostly for toasters
 /datum/species/proc/handle_limbs_setup(var/mob/living/carbon/human/H)
 	return FALSE
+
+/datum/species/proc/get_default_head_style()
+	return "Default"
+
+/datum/species/proc/get_default_tail_style()
+	return "Default"
