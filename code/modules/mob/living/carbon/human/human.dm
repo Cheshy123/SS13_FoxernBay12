@@ -1104,10 +1104,12 @@
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
-		head_style = species.get_default_head_style()
-		tail_style = species.get_default_tail_style()
 
 	species = all_species[new_species]
+
+	head_style = species.get_default_head_style()
+	tail_style = species.get_default_tail_style()
+
 	species.handle_pre_spawn(src)
 
 	if(species.language)
