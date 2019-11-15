@@ -2897,8 +2897,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/corner/red/full,
+/obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled,
 /area/security/main)
 "afL" = (
@@ -2926,8 +2926,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/corner/red/full,
+/obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled,
 /area/security/main)
 "afO" = (
@@ -16561,10 +16561,10 @@
 /turf/simulated/floor/tiled/freezer,
 /area/security/prison/restroom)
 "aFr" = (
-/obj/item/weapon/stool,
 /obj/effect/landmark/start{
 	name = "Assistant"
 	},
+/obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "aFs" = (
@@ -17353,7 +17353,7 @@
 /turf/simulated/floor/plating,
 /area/hallway/primary/central_two)
 "aGK" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled,
 /area/gateway)
 "aGL" = (
@@ -18288,13 +18288,6 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/security/prison/restroom)
-"aIi" = (
-/obj/effect/landmark/start{
-	name = "Assistant"
-	},
-/obj/item/weapon/stool,
-/turf/simulated/floor/tiled,
-/area/storage/primary)
 "aIj" = (
 /obj/effect/landmark/start{
 	name = "Assistant"
@@ -21076,13 +21069,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/primary/central_two)
-"aNR" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/simulated/floor/tiled,
-/area/hallway/primary/central_two)
 "aNS" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -22707,13 +22693,6 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/maintenance/library)
-"aQM" = (
-/obj/machinery/light,
-/obj/effect/floor_decal/corner/blue{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/primary/central_one)
 "aQN" = (
 /obj/structure/sign/warning/high_voltage{
 	pixel_y = -32
@@ -22721,6 +22700,7 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 8
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/hallway/primary/central_one)
 "aQO" = (
@@ -24631,7 +24611,15 @@
 /turf/simulated/floor/plating,
 /area/medical/patient_a)
 "aUM" = (
-/obj/item/weapon/circuitboard/mecha/gygax/main,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/obj/item/modular_computer/console/preset/command,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "aUN" = (
@@ -25595,10 +25583,6 @@
 	dir = 8
 	},
 /obj/structure/closet/wardrobe/white,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/locker)
-"aWK" = (
-/obj/item/weapon/stool,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "aWL" = (
@@ -29656,10 +29640,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/locker/locker_toilet)
-"beI" = (
-/obj/machinery/portable_atmospherics/powered/pump/filled,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/locker)
 "beJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -34719,7 +34699,8 @@
 /area/medical/reception)
 "bog" = (
 /obj/structure/disposalpipe/segment,
-/turf/simulated/wall,
+/obj/effect/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "boh" = (
 /obj/structure/disposalpipe/segment,
@@ -70212,6 +70193,25 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engi_engine)
+"dbA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/corner/yellow{
+	dir = 8
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/primary/aft)
+"gtT" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/primary/starboard)
 
 (1,1,1) = {"
 aaa
@@ -87809,8 +87809,8 @@ bDV
 aLK
 aJP
 aTz
-aWK
-aWK
+aWO
+aWO
 bae
 bbZ
 bbZ
@@ -88571,7 +88571,7 @@ aCK
 aCh
 aFr
 aFn
-aIi
+aFr
 aHY
 auT
 aNn
@@ -88838,7 +88838,7 @@ aLK
 aTF
 aVy
 aWO
-aWK
+aWO
 bam
 bbc
 aTS
@@ -89095,7 +89095,7 @@ aLK
 aTL
 aTz
 aTz
-beI
+aTz
 bam
 bbO
 bgg
@@ -91932,7 +91932,7 @@ bfU
 brd
 bhE
 brd
-bdP
+aKR
 bpq
 bri
 btc
@@ -98892,7 +98892,7 @@ bMq
 bQM
 bSe
 bTp
-bNJ
+dbA
 bPp
 bNJ
 bYV
@@ -99113,7 +99113,7 @@ aKA
 aKA
 aKA
 aPz
-aQM
+aQI
 azE
 aUM
 aVT
@@ -100910,7 +100910,7 @@ aHi
 aCu
 aJl
 aJl
-aNR
+beV
 aPE
 aQR
 azK
@@ -104522,7 +104522,7 @@ aDm
 aZz
 bdV
 bid
-bbn
+gtT
 aZz
 blX
 bnO
