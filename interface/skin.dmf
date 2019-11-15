@@ -1120,7 +1120,7 @@ menu "menu"
 		is-disabled = false
 		saved-params = "is-checked"
 	elem "stretch"
-		name = "&Stretch to fit"
+		name = "&Auto (Stretch to fit)"
 		command = ".winset \"mapwindow.map.icon-size=0\""
 		category = "&Icons"
 		is-checked = true
@@ -1131,6 +1131,15 @@ menu "menu"
 	elem "icon128"
 		name = "&128x128"
 		command = ".winset \"mapwindow.map.icon-size=128\""
+		category = "&Icons"
+		is-checked = false
+		can-check = true
+		group = "size"
+		is-disabled = false
+		saved-params = "is-checked"
+	elem "icon96"
+		name = "&96x96"
+		command = ".winset \"mapwindow.map.icon-size=96\""
 		category = "&Icons"
 		is-checked = false
 		can-check = true
@@ -1182,13 +1191,31 @@ menu "menu"
 		group = ""
 		is-disabled = false
 		saved-params = "is-checked"
-	elem "textmode"
-		name = "&Text"
-		command = ".winset \"menu.textmode.is-checked=true?mapwindow.map.text-mode=true:mapwindow.map.text-mode=false\""
+	elem "nn"
+		name = "&Nearest Neighbor"
+		command = ".winset \"mapwindow.map.zoom-mode=distort\""
+		category = "&Icons"
+		is-checked = true
+		can-check = true
+		group = "scaling"
+		is-disabled = false
+		saved-params = "is-checked"
+	elem "ps"
+		name = "&Point Sampling"
+		command = ".winset \"mapwindow.map.zoom-mode=normal\""
 		category = "&Icons"
 		is-checked = false
 		can-check = true
-		group = ""
+		group = "scaling"
+		is-disabled = false
+		saved-params = "is-checked"
+	elem "bl"
+		name = "&Bilinear"
+		command = ".winset \"mapwindow.map.zoom-mode=blur\""
+		category = "&Icons"
+		is-checked = false
+		can-check = true
+		group = "scaling"
 		is-disabled = false
 		saved-params = "is-checked"
 	elem 
@@ -2041,9 +2068,10 @@ window "mapwindow"
 		border = none
 		drop-zone = true
 		right-click = false
-		saved-params = "icon-size"
+		saved-params = "icon-size; zoom-mode"
 		on-size = ""
 		icon-size = 0
+		zoom-mode = distort
 		text-mode = false
 		letterbox = true
 		zoom = 0
