@@ -708,7 +708,7 @@
 	if(alien == IS_DIONA)
 		return
 	..()
-	if(alien == IS_TAJARA)
+	if(alien == IS_ETHARI)
 		M.adjustToxLoss(0.5 * removed)
 		M.make_jittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
@@ -718,7 +718,7 @@
 
 /datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_TAJARA)
+	if(alien == IS_ETHARI)
 		M.adjustToxLoss(2 * removed)
 		M.make_jittery(4)
 		return
@@ -727,7 +727,7 @@
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
+	if(alien == IS_ETHARI)
 		M.adjustToxLoss(4 * REM)
 		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)
@@ -1194,12 +1194,12 @@
 	M.sleeping = max(0, M.sleeping - 2)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(alien == IS_TAJARA)
+	if(alien == IS_ETHARI)
 		M.adjustToxLoss(0.5 * removed)
 		M.make_jittery(4) //extra sensitive to caffine
 
 /datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_TAJARA)
+	if(alien == IS_ETHARI)
 		M.adjustToxLoss(2 * removed)
 		M.make_jittery(4)
 		return
@@ -1208,7 +1208,7 @@
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
+	if(alien == IS_ETHARI)
 		M.adjustToxLoss(4 * REM)
 		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)

@@ -133,14 +133,14 @@
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
-/datum/species/tajaran
-	name = SPECIES_TAJARA
-	name_plural = "Tajaran"
-	icobase = 'icons/mob/human_races/r_tajaran.dmi'
-	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
+/datum/species/etharian
+	name = SPECIES_ETHARI
+	name_plural = "Etharian"
+	icobase = 'icons/mob/human_races/r_etharian.dmi'
+	deform = 'icons/mob/human_races/r_def_etharian.dmi'
 	tail = "tajtail"
-	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
-	default_h_style = "Tajaran Ears"
+	tail_animation = 'icons/mob/species/etharian/tail.dmi'
+	default_h_style = "Etharian Ears"
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
 	slowdown = -0.5
@@ -155,7 +155,7 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "The Tajaran race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
+	blurb = "The Etharian race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
 	S'randarr system. They have been brought up into the space age by the Humans and Skrell, and have been \
 	influenced heavily by their long history of Slavemaster rule. They have a structured, clan-influenced way \
 	of family and politics. They prefer colder environments, and speak a variety of languages, mostly Siik'Maas, \
@@ -178,7 +178,7 @@
 	base_color = "#333333"
 	blood_color = "#862A51"
 
-	reagent_tag = IS_TAJARA
+	reagent_tag = IS_ETHARI
 
 	heat_discomfort_level = 292
 	heat_discomfort_strings = list(
@@ -188,7 +188,7 @@
 		)
 	cold_discomfort_level = 275
 
-/datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
+/datum/species/etharian/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/tajblind(H),slot_glasses)

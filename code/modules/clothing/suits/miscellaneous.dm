@@ -502,9 +502,9 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.8
 
-/obj/item/clothing/suit/rubber/tajaran
-	name = "tajara suit"
-	desc = "Rubber suit covered in artificial fur. No tajaran interns harmed excessively in making."
+/obj/item/clothing/suit/rubber/etharian
+	name = "ethari suit"
+	desc = "Rubber suit covered in artificial fur. No etharian interns harmed excessively in making."
 	icon_state = "catsuit"
 
 /obj/item/clothing/suit/rubber/skrell

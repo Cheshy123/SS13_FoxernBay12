@@ -273,7 +273,7 @@ var/global/list/additional_antag_types = list()
 		"killer bugs that lay eggs in the husks of the living",
 		"a deserted transport carrying xenomorph specimens",
 		"an emissary for the gestalt requesting a security detail",
-		"a Tajaran slave rebellion",
+		"a Etharian slave rebellion",
 		"radical Skrellian transevolutionaries",
 		"classified security operations"
 		)

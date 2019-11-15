@@ -275,37 +275,37 @@ datum/unit_test/mob_damage/unathi/halloss
 	damagetype = PAIN
 
 // =================================================================
-// SpessKahjit aka Tajaran
+// SpessKahjit aka Etharian
 // =================================================================
 
-datum/unit_test/mob_damage/tajaran
-	name = "MOB: Tajaran damage check template"
-	mob_type = /mob/living/carbon/human/tajaran
+datum/unit_test/mob_damage/etharian
+	name = "MOB: Etharian damage check template"
+	mob_type = /mob/living/carbon/human/etharian
 
-datum/unit_test/mob_damage/tajaran/brute
-	name = "MOB: Tajaran Brute Damage Check"
+datum/unit_test/mob_damage/etharian/brute
+	name = "MOB: Etharian Brute Damage Check"
 	damagetype = BRUTE
 	expected_vulnerability = EXTRA_VULNERABLE
 
-datum/unit_test/mob_damage/tajaran/fire
-	name = "MOB: Tajaran Fire Damage Check"
+datum/unit_test/mob_damage/etharian/fire
+	name = "MOB: Etharian Fire Damage Check"
 	damagetype = BURN
 	expected_vulnerability = EXTRA_VULNERABLE
 
-datum/unit_test/mob_damage/tajaran/tox
-	name = "MOB: Tajaran Toxins Damage Check"
+datum/unit_test/mob_damage/etharian/tox
+	name = "MOB: Etharian Toxins Damage Check"
 	damagetype = TOX
 
-datum/unit_test/mob_damage/tajaran/oxy
-	name = "MOB: Tajaran Oxygen Damage Check"
+datum/unit_test/mob_damage/etharian/oxy
+	name = "MOB: Etharian Oxygen Damage Check"
 	damagetype = OXY
 
-datum/unit_test/mob_damage/tajaran/clone
-	name = "MOB: Tajaran Clone Damage Check"
+datum/unit_test/mob_damage/etharian/clone
+	name = "MOB: Etharian Clone Damage Check"
 	damagetype = CLONE
 
-datum/unit_test/mob_damage/tajaran/halloss
-	name = "MOB: Tajaran Halloss Damage Check"
+datum/unit_test/mob_damage/etharian/halloss
+	name = "MOB: Etharian Halloss Damage Check"
 	damagetype = PAIN
 
 // =================================================================

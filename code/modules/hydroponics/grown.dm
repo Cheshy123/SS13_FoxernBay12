@@ -297,13 +297,13 @@
 	if(seed.kitchen_tag)
 		switch(seed.kitchen_tag)
 			if("shand")
-				var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
+				var/obj/item/stack/medical/bruise_pack/etharian/poultice = new /obj/item/stack/medical/bruise_pack/etharian(user.loc)
 				poultice.heal_brute = potency
 				to_chat(user, "<span class='notice'>You mash the leaves into a poultice.</span>")
 				qdel(src)
 				return
 			if("mtear")
-				var/obj/item/stack/medical/ointment/tajaran/poultice = new /obj/item/stack/medical/ointment/tajaran(user.loc)
+				var/obj/item/stack/medical/ointment/etharian/poultice = new /obj/item/stack/medical/ointment/etharian(user.loc)
 				poultice.heal_burn = potency
 				to_chat(user, "<span class='notice'>You mash the petals into a poultice.</span>")
 				qdel(src)

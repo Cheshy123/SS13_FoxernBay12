@@ -217,7 +217,7 @@ BLIND     // can't see anything
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_TAJARA, SPECIES_VOX)
+	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_ETHARI, SPECIES_VOX)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
 		)
@@ -264,7 +264,7 @@ BLIND     // can't see anything
 	desc = "[desc]<br>They have had the fingertips cut off of them."
 	if("exclude" in species_restricted)
 		species_restricted -= SPECIES_UNATHI
-		species_restricted -= SPECIES_TAJARA
+		species_restricted -= SPECIES_ETHARI
 	return
 
 /obj/item/clothing/gloves/mob_can_equip(mob/user)
@@ -517,7 +517,7 @@ BLIND     // can't see anything
 	permeability_coefficient = 0.50
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_TAJARA,SPECIES_VOX)
+	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_ETHARI,SPECIES_VOX)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi',
 		)

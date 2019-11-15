@@ -1,8 +1,8 @@
 // Alien clothing.
 /datum/gear/suit/zhan_furs
-	display_name = "Zhan-Khazan furs (Tajara)"
-	path = /obj/item/clothing/suit/tajaran/furs
-	whitelisted = list(SPECIES_TAJARA)
+	display_name = "Zhan-Khazan furs (Ethari)"
+	path = /obj/item/clothing/suit/etharian/furs
+	whitelisted = list(SPECIES_ETHARI)
 	sort_category = "Xenowear"
 
 /datum/gear/suit/unathi_mantle
@@ -102,25 +102,25 @@
 	sort_category = "Xenowear"
 
 /datum/gear/eyes/tajblind/sec
-	display_name = "sleek veil (Tajara)"
+	display_name = "sleek veil (Ethari)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/tajblind
-	whitelisted = list(SPECIES_TAJARA)
+	whitelisted = list(SPECIES_ETHARI)
 	sort_category = "Xenowear"
 	cost = 1
 	allowed_roles = list("Security Officer","Head of Security","Warden","Detective")
 
 /datum/gear/eyes/tajblind/med
-	display_name = "medical veil (Tajara)"
+	display_name = "medical veil (Ethari)"
 	path = /obj/item/clothing/glasses/hud/health/tajblind
-	whitelisted = list(SPECIES_TAJARA)
+	whitelisted = list(SPECIES_ETHARI)
 	sort_category = "Xenowear"
 	cost = 1
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
 /datum/gear/eyes/tajblind/meson
-	display_name = "industrial veil (Tajara)"
+	display_name = "industrial veil (Ethari)"
 	path = /obj/item/clothing/glasses/meson/prescription/tajblind
-	whitelisted = list(SPECIES_TAJARA)
+	whitelisted = list(SPECIES_ETHARI)
 	sort_category = "Xenowear"
 	cost = 1
 	allowed_roles = list("Chief Engineer","Station Engineer","Atmospherics Technician", "Shaft Miner")

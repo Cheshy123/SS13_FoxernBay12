@@ -21,7 +21,7 @@
 #define IS_VOX     2
 #define IS_SKRELL  3
 #define IS_UNATHI  4
-#define IS_TAJARA  5
+#define IS_ETHARI  5
 #define IS_XENOS   6
 #define IS_SLIME   8
 

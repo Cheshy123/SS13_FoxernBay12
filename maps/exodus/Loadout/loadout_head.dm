@@ -49,8 +49,8 @@
 
 /datum/gear/head/zhan_scarf
 	display_name = "Zhan headscarf"
-	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = list(SPECIES_TAJARA)
+	path = /obj/item/clothing/head/etharian/scarf
+	whitelisted = list(SPECIES_ETHARI)
 
 /datum/gear/head/welding
 	allowed_roles = list("Roboticist","Station Engineer","Atmospheric Technician","Chief Engineer")

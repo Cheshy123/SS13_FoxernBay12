@@ -49,7 +49,7 @@
 		)
 	autohiss_exempt = list(LANGUAGE_UNATHI)
 
-/datum/species/tajaran
+/datum/species/etharian
 	autohiss_basic_map = list(
 			"r" = list("rr", "rrr", "rrrr")
 		)

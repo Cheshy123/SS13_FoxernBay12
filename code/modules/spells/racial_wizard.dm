@@ -12,7 +12,7 @@
 	var/list/potentials = list(
 		SPECIES_HUMAN = /obj/item/weapon/storage/bag/cash/infinite,
 		SPECIES_VOX = /spell/targeted/shapeshift/true_form,
-		SPECIES_TAJARA = /spell/messa_shroud,
+		SPECIES_ETHARI = /spell/messa_shroud,
 		SPECIES_UNATHI = /spell/moghes_blessing,
 		SPECIES_DIONA = /spell/aoe_turf/conjure/grove/gestalt,
 		SPECIES_SKRELL = /obj/item/weapon/contract/apprentice/skrell,
@@ -52,7 +52,7 @@
 			src.handle_item_insertion(I,1)
 
 
-//Tajaran
+//Etharian
 /spell/messa_shroud
 	name = "Messa's Shroud"
 	desc = "This spell causes darkness at the point of the caster for a duration of time."
@@ -68,7 +68,7 @@
 
 	cast_sound = 'sound/effects/bamf.ogg'
 
-	hud_state = "wiz_tajaran"
+	hud_state = "wiz_etharian"
 
 /spell/messa_shroud/choose_targets()
 	return list(get_turf(holder))

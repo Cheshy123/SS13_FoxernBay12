@@ -373,7 +373,7 @@
 	item_state = "syringe_kit"
 
 
-/*---Tajaran-specific Eyewear---*/
+/*---Etharian-specific Eyewear---*/
 
 /obj/item/clothing/glasses/tajblind
 	name = "embroidered veil"

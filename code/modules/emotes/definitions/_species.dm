@@ -30,7 +30,7 @@
 		/decl/emote/human/stopsway
 		)
 
-/datum/species/tajaran
+/datum/species/etharian
 	default_emotes = list(
 		/decl/emote/human/swish,
 		/decl/emote/human/wag,

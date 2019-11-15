@@ -16,14 +16,14 @@
 
 //Taj clothing.
 
-/obj/item/clothing/suit/tajaran/furs
+/obj/item/clothing/suit/etharian/furs
 	name = "heavy furs"
 	desc = "A traditional Zhan-Khazan garment."
 	icon_state = "zhan_furs"
 	item_state = "zhan_furs"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 
-/obj/item/clothing/head/tajaran/scarf
+/obj/item/clothing/head/etharian/scarf
 	name = "headscarf"
 	desc = "A scarf of coarse fabric. Seems to have ear-holes."
 	icon_state = "zhan_scarf"

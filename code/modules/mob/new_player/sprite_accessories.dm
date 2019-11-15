@@ -638,7 +638,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_TAJARA,SPECIES_SKRELL,SPECIES_VOX,SPECIES_IPC)
+		species_allowed = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_ETHARI,SPECIES_SKRELL,SPECIES_VOX,SPECIES_IPC)
 
 	watson
 		name = "Watson Mustache"
@@ -800,89 +800,89 @@
 		gender = FEMALE
 
 	taj_ears
-		name = "Tajaran Ears"
+		name = "Etharian Ears"
 		icon_state = "ears_plain"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_clean
-		name = "Tajara Clean"
+		name = "Ethari Clean"
 		icon_state = "hair_clean"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_bangs
-		name = "Tajara Bangs"
+		name = "Ethari Bangs"
 		icon_state = "hair_bangs"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_braid
-		name = "Tajara Braid"
+		name = "Ethari Braid"
 		icon_state = "hair_tbraid"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_shaggy
-		name = "Tajara Shaggy"
+		name = "Ethari Shaggy"
 		icon_state = "hair_shaggy"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_mohawk
-		name = "Tajaran Mohawk"
+		name = "Etharian Mohawk"
 		icon_state = "hair_mohawk"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_plait
-		name = "Tajara Plait"
+		name = "Ethari Plait"
 		icon_state = "hair_plait"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_straight
-		name = "Tajara Straight"
+		name = "Ethari Straight"
 		icon_state = "hair_straight"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_long
-		name = "Tajara Long"
+		name = "Ethari Long"
 		icon_state = "hair_long"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_rattail
-		name = "Tajara Rat Tail"
+		name = "Ethari Rat Tail"
 		icon_state = "hair_rattail"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_spiky
-		name = "Tajara Spiky"
+		name = "Ethari Spiky"
 		icon_state = "hair_tajspiky"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_messy
-		name = "Tajara Messy"
+		name = "Ethari Messy"
 		icon_state = "hair_messy"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_curls
-		name = "Tajara Curly"
+		name = "Ethari Curly"
 		icon_state = "hair_curly"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_wife
-		name = "Tajara Housewife"
+		name = "Ethari Housewife"
 		icon_state = "hair_wife"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_victory
-		name = "Tajara Victory Curls"
+		name = "Ethari Victory Curls"
 		icon_state = "hair_victory"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_bob
-		name = "Tajara Bob"
+		name = "Ethari Bob"
 		icon_state = "hair_tbob"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_ears_fingercurl
-		name = "Tajara Finger Curls"
+		name = "Ethari Finger Curls"
 		icon_state = "hair_fingerwave"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	vox_quills_long
 		name = "Long Vox Quills"
@@ -892,34 +892,34 @@
 /datum/sprite_accessory/facial_hair
 
 	taj_sideburns
-		name = "Tajara Sideburns"
+		name = "Ethari Sideburns"
 		icon_state = "facial_sideburns"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_mutton
-		name = "Tajara Mutton"
+		name = "Ethari Mutton"
 		icon_state = "facial_mutton"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_pencilstache
-		name = "Tajara Pencilstache"
+		name = "Ethari Pencilstache"
 		icon_state = "facial_pencilstache"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_moustache
-		name = "Tajara Moustache"
+		name = "Ethari Moustache"
 		icon_state = "facial_moustache"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_goatee
-		name = "Tajara Goatee"
+		name = "Ethari Goatee"
 		icon_state = "facial_goatee"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 	taj_smallstache
-		name = "Tajara Smallsatche"
+		name = "Ethari Smallsatche"
 		icon_state = "facial_smallstache"
-		species_allowed = list(SPECIES_TAJARA)
+		species_allowed = list(SPECIES_ETHARI)
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery
@@ -937,11 +937,11 @@
 		icon_state = "tatt1"
 		species_allowed = list(SPECIES_HUMAN)
 
-	tajaran
-		name = "Default tajaran skin"
+	etharian
+		name = "Default etharian skin"
 		icon_state = "default"
-		icon = 'icons/mob/human_races/r_tajaran.dmi'
-		species_allowed = list(SPECIES_TAJARA)
+		icon = 'icons/mob/human_races/r_etharian.dmi'
+		species_allowed = list(SPECIES_ETHARI)
 
 	unathi
 		name = "Default Unathi skin"
