@@ -678,7 +678,7 @@ var/global/list/damage_icon_parts = list()
 		if(is_custom_tail)
 			var/datum/sprite_accessory/tail/T = tail_styles_list[tail_style]
 			if(istype(T))
-				tail_icon = new icon(T.icon)
+				tail_icon = new /icon(T.icon)
 				tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 				tail_icon_cache[icon_key] = tail_icon
 			else

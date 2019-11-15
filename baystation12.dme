@@ -1734,6 +1734,7 @@
 #include "code\modules\mob\new_player\sprite_accessories\ethari\ethari_facial_hair.dm"
 #include "code\modules\mob\new_player\sprite_accessories\ethari\ethari_hair.dm"
 #include "code\modules\mob\new_player\sprite_accessories\ethari\ethari_head.dm"
+#include "code\modules\mob\new_player\sprite_accessories\ethari\ethari_tail.dm"
 #include "code\modules\mob\new_player\sprite_accessories\human\human_facial_hair.dm"
 #include "code\modules\mob\new_player\sprite_accessories\human\human_hair.dm"
 #include "code\modules\mob\new_player\sprite_accessories\skrell\skrell_hair.dm"

@@ -173,7 +173,7 @@
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	body_flags = CUSTOM_HEAD
+	body_flags = CUSTOM_HEAD | CUSTOM_TAIL
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -196,6 +196,9 @@
 
 /datum/species/get_default_head_style()
 	return "Feline head"
+
+/datum/species/get_default_tail_style()
+	return "Tajaran tail"
 
 /datum/species/skrell
 	name = SPECIES_SKRELL
