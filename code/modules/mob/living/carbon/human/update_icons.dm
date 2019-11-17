@@ -349,7 +349,7 @@ var/global/list/damage_icon_parts = list()
 		if(head_organ && m_styles["head"])
 			var/head_marking = m_styles["head"]
 			var/datum/sprite_accessory/head_marking_style = marking_styles_list[head_marking]
-			if(head_marking_style && (species.name in head_marking_style.species_allowed))
+			if(head_marking_style && (species.get_bodytype() in head_marking_style.species_allowed))
 				var/icon/h_marking_s = icon("icon" = head_marking_style.icon, "icon_state" = "[head_marking_style.icon_state]_s")
 				if(head_marking_style.do_colouration)
 					h_marking_s.Blend(m_colours["head"], ICON_ADD)
@@ -360,13 +360,16 @@ var/global/list/damage_icon_parts = list()
 		if(chest_organ && m_styles["body"])
 			var/body_marking = m_styles["body"]
 			var/datum/sprite_accessory/body_marking_style = marking_styles_list[body_marking]
-			if(body_marking_style && (species.name in body_marking_style.species_allowed))
+			if(body_marking_style && (species.get_bodytype() in body_marking_style.species_allowed))
 				var/icon/b_marking_s = icon("icon" = body_marking_style.icon, "icon_state" = "[body_marking_style.icon_state]_s")
 				if(body_marking_style.do_colouration)
 					b_marking_s.Blend(m_colours["body"], ICON_ADD)
 				markings_standing.Blend(b_marking_s, ICON_OVERLAY)
 
-	overlays_standing[UNDERWEAR_LAYER] = markings_standing
+	overlays_standing[MARKINGS_LAYER] = markings_standing
+
+	if(update_icons)
+		update_icons()
 
 
 //UNDERWEAR OVERLAY
