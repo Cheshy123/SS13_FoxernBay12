@@ -709,16 +709,27 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
 
-	if(tail_overlay && species.get_tail_animation(src))
+	if(tail_overlay && (species.get_tail_animation(src) || species.body_flags & CUSTOM_TAIL))
 		tail_overlay.icon_state = t_state
 		return tail_overlay
 	return null
 
+/mob/living/carbon/human/proc/get_tail_state(var/suffix)
+	var/is_custom_tail = (species.body_flags & CUSTOM_TAIL)
+	var/t_state = "[species.get_tail(src)][suffix]"
+	if(is_custom_tail)
+		var/datum/sprite_accessory/tail/T = tail_styles_list[tail_style]
+		if(!istype(T))
+			crash_with("Invalid tail specified on [src]: [tail_style]")
+		t_state = "[T.icon_state][suffix]"
+
+	return t_state
+
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
-/mob/living/carbon/human/proc/animate_tail_once(var/update_icons=1)
-	var/t_state = "[species.get_tail(src)]_once"
-
+/mob/living/carbon/human/proc/animate_tail_once(var/update_icons=1)	
+	var/t_state = get_tail_state("_once")
+	
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
 	if(tail_overlay && tail_overlay.icon_state == t_state)
 		return //let the existing animation finish
@@ -734,28 +745,33 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_start(var/update_icons=1)
-	set_tail_state("[species.get_tail(src)]_slow[rand(0,9)]")
+	var/t_state = get_tail_state("_slow[rand(0,9)]")
+	set_tail_state(t_state)
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_fast(var/update_icons=1)
-	set_tail_state("[species.get_tail(src)]_loop[rand(0,9)]")
+	var/t_state = get_tail_state("_loop[rand(0,9)]")
+	set_tail_state(t_state)
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_reset(var/update_icons=1)
 	if(stat != DEAD)
-		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
+		var/t_state = get_tail_state("_idle[rand(0,9)]")
+		set_tail_state(t_state)
 	else
-		set_tail_state("[species.get_tail(src)]_static")
+		var/t_state = get_tail_state("_static")
+		set_tail_state(t_state)
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_stop(var/update_icons=1)
-	set_tail_state("[species.get_tail(src)]_static")
+	var/t_state = get_tail_state("_static")
+	set_tail_state(t_state)
 
 	if(update_icons)
 		update_icons()
