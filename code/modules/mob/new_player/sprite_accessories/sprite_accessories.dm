@@ -55,6 +55,14 @@
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
 
+	var/allowed_head = null //Head name that allowed or null if no filter
+
+/datum/sprite_accessory/proc/is_head_allowed(var/head_name)
+	if(!allowed_head)
+		return TRUE
+	else 
+		return allowed_head == head_name
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -120,7 +128,6 @@
 
 /datum/sprite_accessory/body_markings/head
 	marking_location = "head"
-	var/allowed_head = null //Head name that allowed or null if no filter
 
 /datum/sprite_accessory/body_markings/body
 	marking_location = "body"

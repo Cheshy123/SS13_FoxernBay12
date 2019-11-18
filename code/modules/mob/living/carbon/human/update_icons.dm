@@ -351,7 +351,7 @@ var/global/list/damage_icon_parts = list()
 			var/datum/sprite_accessory/body_markings/head/head_marking_style = marking_styles_list[head_marking]
 			if(istype(head_marking_style))
 				var/is_species_allowed = (species.get_bodytype() in head_marking_style.species_allowed)
-				var/is_head_allowed = (!head_marking_style.allowed_head || head_style == head_marking_style.allowed_head)
+				var/is_head_allowed = head_marking_style.is_head_allowed(head_style)
 				if(is_species_allowed && is_head_allowed)
 					var/icon/h_marking_s = icon("icon" = head_marking_style.icon, "icon_state" = "[head_marking_style.icon_state]_s")
 					if(head_marking_style.do_colouration)

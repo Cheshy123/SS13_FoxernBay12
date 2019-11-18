@@ -372,6 +372,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 			if(!(mob_species.get_bodytype() in S.species_allowed))
 				continue
+			if(!S.is_head_allowed(pref.head_style))
+				continue
 
 			valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
 
@@ -427,6 +429,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if(pref.gender == FEMALE && S.gender == MALE)
 				continue
 			if(!(mob_species.get_bodytype() in S.species_allowed))
+				continue
+			if(!S.is_head_allowed(pref.head_style))
 				continue
 
 			valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
@@ -612,6 +616,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(new_h_style && CanUseTopic(user))
 			pref.head_style = new_h_style
 			pref.m_styles["head"] = "None"
+			pref.f_style = "Shalved"
+			pref.h_style = "None"
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["custom_tail"])
@@ -640,7 +646,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					continue
 				if(M.marking_location != "head")
 					continue
-				if(M.allowed_head && pref.head_style != M.allowed_head)
+				if(!M.is_head_allowed(pref.head_style))
 					continue
 
 				valid_markings += markingstyle
