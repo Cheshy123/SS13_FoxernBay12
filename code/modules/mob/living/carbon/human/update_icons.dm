@@ -348,12 +348,15 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
 		if(head_organ && m_styles["head"])
 			var/head_marking = m_styles["head"]
-			var/datum/sprite_accessory/head_marking_style = marking_styles_list[head_marking]
-			if(head_marking_style && (species.get_bodytype() in head_marking_style.species_allowed))
-				var/icon/h_marking_s = icon("icon" = head_marking_style.icon, "icon_state" = "[head_marking_style.icon_state]_s")
-				if(head_marking_style.do_colouration)
-					h_marking_s.Blend(m_colours["head"], ICON_ADD)
-				markings_standing.Blend(h_marking_s, ICON_OVERLAY)
+			var/datum/sprite_accessory/body_markings/head/head_marking_style = marking_styles_list[head_marking]
+			if(istype(head_marking_style))
+				var/is_species_allowed = (species.get_bodytype() in head_marking_style.species_allowed)
+				var/is_head_allowed = (!head_marking_style.allowed_head || head_style == head_marking_style.allowed_head)
+				if(is_species_allowed && is_head_allowed)
+					var/icon/h_marking_s = icon("icon" = head_marking_style.icon, "icon_state" = "[head_marking_style.icon_state]_s")
+					if(head_marking_style.do_colouration)
+						h_marking_s.Blend(m_colours["head"], ICON_ADD)
+					markings_standing.Blend(h_marking_s, ICON_OVERLAY)
 
 	if(species.body_flags & CUSTOM_HAS_BODY_MARKING)
 		var/obj/item/organ/external/chest/chest_organ = get_organ(BP_CHEST)

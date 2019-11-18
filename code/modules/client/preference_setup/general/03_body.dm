@@ -611,6 +611,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/new_h_style = input(user, "Choose your character's head style:", "Character Preference", pref.head_style)  as null|anything in valid_heades
 		if(new_h_style && CanUseTopic(user))
 			pref.head_style = new_h_style
+			pref.m_styles["head"] = "None"
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["custom_tail"])
@@ -633,9 +634,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			valid_markings["None"] = marking_styles_list["None"]
 			for(var/markingstyle in marking_styles_list)
 				var/datum/sprite_accessory/body_markings/head/M = marking_styles_list[markingstyle]
+				if(!istype(M))
+					continue
 				if(!(species in M.species_allowed))
 					continue
 				if(M.marking_location != "head")
+					continue
+				if(M.allowed_head && pref.head_style != M.allowed_head)
 					continue
 
 				valid_markings += markingstyle
@@ -684,6 +689,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			valid_markings["None"] = marking_styles_list["None"]
 			for(var/markingstyle in marking_styles_list)
 				var/datum/sprite_accessory/body_markings/tail/M = marking_styles_list[markingstyle]
+				if(!istype(M))
+					continue
 				if(M.marking_location != "tail")
 					continue
 				if(!(species in M.species_allowed))

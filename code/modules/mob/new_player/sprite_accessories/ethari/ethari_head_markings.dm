@@ -1,8 +1,9 @@
 /datum/sprite_accessory/body_markings/head/ethari
 	species_allowed = list(SPECIES_ETHARI)
 
-/datum/sprite_accessory/body_markings/head/ethari
+/datum/sprite_accessory/body_markings/head/ethari/tajaran
 	icon = 'icons/mob/species/etharian/tajaran_head_markings.dmi'
+	allowed_head = "Feline head"
 
 /datum/sprite_accessory/body_markings/head/ethari/tajaran/tiger_head_taj
 	name = "Etharian Tiger Head"

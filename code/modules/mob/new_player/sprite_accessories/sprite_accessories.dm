@@ -120,6 +120,7 @@
 
 /datum/sprite_accessory/body_markings/head
 	marking_location = "head"
+	var/allowed_head = null //Head name that allowed or null if no filter
 
 /datum/sprite_accessory/body_markings/body
 	marking_location = "body"
