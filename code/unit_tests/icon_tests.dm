@@ -57,6 +57,8 @@
 	for(var/sprite_accessory_main_type in sprite_accessory_subtypes)
 		var/sprite_accessories_by_name = list()
 		for(var/sprite_accessory_type in subtypesof(sprite_accessory_main_type))
+			if(sprite_accessory_type in sprite_accessory_subtypes)
+				continue
 			var/failed = FALSE
 			var/datum/sprite_accessory/sat = sprite_accessory_type
 
