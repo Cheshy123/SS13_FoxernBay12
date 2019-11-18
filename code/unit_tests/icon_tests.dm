@@ -44,7 +44,10 @@
 /datum/unit_test/icon_test/sprite_accessories_shall_have_existing_icon_states/start_test()
 	var/sprite_accessory_subtypes = list(
 		/datum/sprite_accessory/hair,
-		/datum/sprite_accessory/facial_hair
+		/datum/sprite_accessory/hair/ethari,
+		/datum/sprite_accessory/facial_hair,
+		/datum/sprite_accessory/facial_hair/ethari,
+		/datum/sprite_accessory/facial_hair/ethari/tajaran
 	)
 
 	var/list/failed_sprite_accessories = list()
