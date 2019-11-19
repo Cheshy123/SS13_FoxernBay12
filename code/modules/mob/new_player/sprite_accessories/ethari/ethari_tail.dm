@@ -5,3 +5,8 @@
 	tajtail
 		name = "Tajaran tail"
 		icon_state = "tajtail"
+
+	vulptail
+		name = "Vulpkanin tail"
+		icon = 'icons/mob/species/etharian/vulptail.dmi'
+		icon_state = "vulptail"

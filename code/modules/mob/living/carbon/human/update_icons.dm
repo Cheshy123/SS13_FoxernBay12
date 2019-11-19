@@ -745,14 +745,14 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_start(var/update_icons=1)
-	var/t_state = get_tail_state("_slow[rand(0,9)]")
+	var/t_state = get_tail_state("_slow")
 	set_tail_state(t_state)
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_fast(var/update_icons=1)
-	var/t_state = get_tail_state("_loop[rand(0,9)]")
+	var/t_state = get_tail_state("_loop")
 	set_tail_state(t_state)
 
 	if(update_icons)
@@ -760,7 +760,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/proc/animate_tail_reset(var/update_icons=1)
 	if(stat != DEAD)
-		var/t_state = get_tail_state("_idle[rand(0,9)]")
+		var/t_state = get_tail_state("_idle")
 		set_tail_state(t_state)
 	else
 		var/t_state = get_tail_state("_static")
