@@ -45,6 +45,7 @@
 	var/sprite_accessory_subtypes = list(
 		/datum/sprite_accessory/hair,
 		/datum/sprite_accessory/hair/ethari,
+		/datum/sprite_accessory/hair/unathi,
 		/datum/sprite_accessory/facial_hair,
 		/datum/sprite_accessory/facial_hair/ethari,
 		/datum/sprite_accessory/facial_hair/ethari/tajaran
