@@ -55,6 +55,7 @@
 	var/list/m_colours = DEFAULT_MARKING_COLOURS		//Marking colours.
 	var/tail_style = "None"
 	var/head_style = "Default"
+	var/ears_style = "None"
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
@@ -321,6 +322,7 @@
 
 	character.head_style = head_style
 	character.tail_style = tail_style
+	character.ears_style = ears_style
 	character.m_styles = m_styles
 	character.m_colours = m_colours
 

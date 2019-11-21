@@ -135,6 +135,16 @@
 /datum/sprite_accessory/body_markings/tail
 	marking_location = "tail"
 
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Ears Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+/datum/sprite_accessory/ears
+	gender = NEUTER
+
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now

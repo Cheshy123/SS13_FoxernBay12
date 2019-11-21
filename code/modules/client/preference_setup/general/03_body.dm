@@ -32,6 +32,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["has_cortical_stack"] 	>> pref.has_cortical_stack
 	S["head_style"]         	>> pref.head_style
 	S["tail_style"]         	>> pref.tail_style
+	S["ears_style"]         	>> pref.ears_style
 	params2list(S["m_styles"])  >> pref.m_styles
 	params2list(S["m_colours"]) >> pref.m_colours
 	pref.preview_icon = null
@@ -60,6 +61,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["has_cortical_stack"] << pref.has_cortical_stack
 	S["head_style"]         << pref.head_style
 	S["tail_style"]         << pref.tail_style
+	S["ears_style"]         << pref.ears_style
 	S["m_styles"]   		<< list2params(pref.m_styles)
 	S["m_colours"]  		<< list2params(pref.m_colours)
 
@@ -86,6 +88,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	pref.head_style     = sanitize_text(pref.head_style, initial(pref.head_style))
 	pref.tail_style     = sanitize_text(pref.tail_style, initial(pref.tail_style))
+	pref.ears_style     = sanitize_text(pref.ears_style, initial(pref.ears_style))
 	for(var/marking_location in pref.m_styles)
 		pref.m_styles[marking_location] = sanitize_inlist(pref.m_styles[marking_location], marking_styles_list, DEFAULT_MARKING_STYLES[marking_location])
 	for(var/marking_location in pref.m_colours)
@@ -235,6 +238,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(has_body_flag(mob_species, CUSTOM_TAIL))
 		. += "<br><b>Tail style:</b>"
 		. += "<a href='?src=\ref[src];custom_tail=1'>[pref.tail_style]</a><br>"
+
+	if(has_body_flag(mob_species, CUSTOM_HAS_EARS))
+		. += "<br><b>Ears style:</b>"
+		. += "<a href='?src=\ref[src];custom_ears=1'>[pref.ears_style]</a><br>"
 
 	if(has_body_flag(mob_species, CUSTOM_HAS_HEAD_MARKING))
 		var/mark_style = pref.m_styles["head"]
@@ -634,6 +641,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.tail_style = new_t_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["custom_ears"])
+		var/list/valid_ears = list()
+		for(var/ear in ears_styles_list)
+			var/datum/sprite_accessory/ears/S = ears_styles_list[ear]
+			if(!istype(S))
+				continue
+			if(!(mob_species.get_bodytype() in S.species_allowed))
+				continue
+
+			valid_ears[ear] = ears_styles_list[ear]
+
+		var/new_e_style = input(user, "Choose your character's ear style:", "Character Preference", pref.ears_style)  as null|anything in valid_ears
+		if(new_e_style && CanUseTopic(user))
+			pref.ears_style = new_e_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["choose_head_style"])
 		if(has_body_flag(mob_species, CUSTOM_HAS_HEAD_MARKING)) //Species with head markings.
 			var/list/valid_markings = list()
@@ -715,7 +738,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if(new_markings)
 				pref.m_colours["tail"] = new_markings
 				return TOPIC_REFRESH_UPDATE_PREVIEW
-
 
 	return ..()
 

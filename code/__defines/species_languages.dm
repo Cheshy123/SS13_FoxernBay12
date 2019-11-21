@@ -32,6 +32,7 @@
 #define CUSTOM_HAS_BODY_MARKING     0x8     // Can specify body markings
 #define CUSTOM_HAS_TAIL_MARKING     0x10    // Can specify tail markings
 #define CUSTOM_HAS_MARKING          (CUSTOM_HAS_HEAD_MARKING|CUSTOM_HAS_BODY_MARKING|CUSTOM_HAS_TAIL_MARKING)
+#define CUSTOM_HAS_EARS             0x20
 
 // Languages.
 #define LANGUAGE_GALCOM "Galactic Common"
